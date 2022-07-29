@@ -10,12 +10,118 @@
     <title>Around the US</title>
     <link rel="stylesheet" href="./pages/index.css" />
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
-    <!-- <link rel="preconnect" href="https://fonts.googleapis.com" /> -->
-    <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /> -->
-    <!-- <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Istok+Web:wght@400;700&family=Noto+Serif&family=Ubuntu:wght@400;700&display=swap"
-      rel="stylesheet"
-    /> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;900&display=swap" rel="stylesheet">
+    
+   
+
   </head>
-  <body></body>
+  <body>
+    <div class="page">
+    <header class="header">
+      <img
+            src="/images/around-the-us.svg"
+            alt="Around the US icon"
+            class="header__image"
+          />
+          
+    </header>
+    <main>
+      <section class="author">
+        <img
+        src="/images/jacques-cousteau.jpg"
+        alt="Picture of Jacques-Cousteau" 
+        class="author__image"/>
+
+        <div class="author__info">
+         <h1 class ="author__name">Jacques Cousteau</h1>
+         <h2 class = "author__description">Explorer</h2>
+        
+        <button 
+        type="button"
+        class="author__pencil"></button> 
+        </div>
+        
+        <button 
+        type="button"
+        class="author__plus-sign"></button>
+        
+       
+
+        </section>
+
+        <section class="cards">
+          <ul class="cards__list">
+            <li class="card">
+              <img
+              src="images/yosemite-valley.jpg"
+              alt="Yosemite Valley"
+              class="card__image"/>
+              <div class="card__description">
+                <h2 class="card__title">Yosemite Valley</h2>
+                <button class="card__like-button"></button>
+              </div>
+            </li>
+            <li class="card">
+              <img
+              src="/images/lake-louise.png"
+              alt="Lake Louise"
+              class="card__image"/>
+              <div class="card__description">
+                <h2 class="card__title">Lake Louise</h2>
+                <button class="card__like-button"></button>
+              </div>
+            </li>
+            <li class="card">
+              <img
+              src="/images/bald-mountains.png"
+              alt="Bald Mountains"
+              class="card__image"/>
+              <div class="card__description">
+                <h2 class="card__title">Bald Mountains</h2>
+                <button class="card__like-button"></button>
+              </div>
+            </li>
+            <li class="card">
+              <img
+              src="/images/latemar.png"
+              alt="Latemar"
+              class="card__image"/>
+              <div class="card__description">
+                <h2 class="card__title">Latemar</h2>
+                <button class="card__like-button"></button>
+              </div>
+            </li>
+            <li class="card">
+              <img
+              src="/images/vanoise-national-park.png"
+              alt="Vanoise National Park"
+              class="card__image"/>
+              <div class="card__description">
+                <h2 class="card__title block">Vanoise National Park</h2>
+                <button class="card__like-button"></button>
+              </div>
+            </li>
+            <li class="card">
+              <img
+              src="/images/lago-di-braies.png"
+              alt="Lago di Braies"
+              class="card__image"/>
+              <div class="card__description">
+                <h2 class="card__title">Lago di Braies</h2>
+                <button class="card__like-button"></button>
+              </div>
+            
+      
+            </li>
+            
+          </ul>
+        </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">&copy;2022 Around the U.S.</p>
+    </footer>
+    </div>
+  </body>
 </html>

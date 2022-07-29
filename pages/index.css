@@ -1,0 +1,20 @@
+/* VENDOR */
+@import url(/vendor/normalize.css);
+
+/* PAGE */
+@import url(/blocks/page.css);
+
+/* HEADER */
+@import url(/blocks/header.css);
+
+/* AUTHOR */
+@import url(/blocks/author.css);
+
+/* CARDS */
+@import url(/blocks/cards.css);
+
+/* FOOTER */
+@import url(/blocks/footer.css);
+
+/* BLOCK */
+@import url(/blocks/block.css);

@@ -1,0 +1,261 @@
+
+/* .AUTHOR */
+
+.author {
+color: #ffffff;
+display: flex;
+flex-direction: row;
+padding-top: 36.25px;
+max-width: 880px;
+    width: 100%;
+margin: 36.25px auto 0;
+
+}
+
+@media screen and (max-width: 980px) {
+    .author {
+        max-width: 878px;
+
+    }
+}
+
+@media screen and (max-width: 735px) {
+    .author {
+        max-width: 581px;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .author {
+        max-width: 282px;
+        flex-wrap: wrap;
+    } 
+}
+
+@media screen and (max-width: 320px) {
+    .author {
+        max-width: 282px;
+        flex-wrap: wrap;
+        margin-left: 19px;
+        margin-right: 19px;
+        margin-top: 0px;
+        
+    }
+}
+
+/* .AUTHOR__IMAGE */
+
+.author__image {
+    border-radius: 50%;
+    height: 120.5px;
+    margin-right: 20px;
+    
+}
+
+@media screen and (max-width:580px) {
+    .author__image {
+        height: 127.5px;
+        padding-left: 78.5px;
+        padding-right: 72.75px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .author__image {
+        height: 127.5px;
+        padding-left: 78.5px;
+        padding-right: 72.75px;
+        
+    }
+}
+
+
+/* .AUTHOR__INFO */
+
+.author__info {
+    font-family: "Inter", Arial, sans-serif;
+    color: #ffffff;
+    display: grid;
+    grid-template-areas: "name pencil" "description description";
+    grid-template-columns: minmax(auto, 373px) auto;
+    grid-gap: 16px 18px;
+    margin-right: 0px;
+
+}
+
+@media screen and (max-width: 735px) {
+    .author__info {
+
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .author__info {
+    max-width: 282px;
+    grid-template-columns: minmax(auto, auto) auto;
+    grid-template-areas: "name pencil" "description .";
+    grid-template-rows: repeat(2,1fr);
+    grid-gap: 14px 10px;
+    margin-left: 43px;
+    white-space: nowrap;
+    height: 78px;
+    margin-bottom: 36px;
+          
+    }
+}
+
+
+
+
+/* .AUTHOR__NAME */
+
+.author__name {
+    font-family: "Inter", Arial, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 42px;
+    line-height: 48px;
+    height: 39px;
+    max-width: 373px;
+    margin-bottom: 0px;
+    grid-area: name;
+    color: #ffffff;
+    
+}
+
+@media screen and (max-width:735px) {
+    .author__name {
+        font-size: 22px;
+        padding-top: 13px;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .author__name {
+        text-align: right;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .author__name {
+        height: 22px;
+        font-size: 22px;
+        line-height: 27px;
+        margin-top: 26.25px;
+        margin-right: 0;
+        text-align: center;
+        
+    }
+}
+
+
+
+/* .AUTHOR__DESCRIPTION */
+
+.author__description {
+    
+    font-family: "Inter", Arial, sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21.78px;
+    height: 22px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-right: 0px;
+    grid-area: description;
+    
+}
+
+@media screen and (max-width: 580px) {
+    .author__description {
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .author__description {
+        font-size: 14px;
+        line-height: 14px;
+        text-align:center;
+        margin-bottom: 0px;
+        
+    }
+}
+
+
+/* .AUTHOR__PENCIL */
+
+.author__pencil {
+    padding: 7px;
+    border: 1px solid #ffffff;
+    background-image: url("/images/pencil.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 24px;
+    height: 24px;
+    background-color: rgba(255, 255, 255, 0);
+    grid-area: pencil;
+    margin-top: 40px;
+    grid-area: pencil;
+    margin-right: 30px;
+    
+}
+
+.author__pencil:hover {
+    cursor: pointer;
+    opacity: .6;
+}
+
+@media screen and (max-width: 320px) {
+    .author__pencil {
+        width: 7.49px;
+        height: 7.5px;
+        margin-left: auto;
+        margin-top: 45px
+        
+     }
+}
+
+
+
+/* .AUTHOR__PLUS-SIGN */
+
+.author__plus-sign {
+    padding: 14px 64px;
+    border: 2px solid #ffffff;
+    border-radius: 2px;
+    background-image: url("/images/plussign.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 150px;
+    height: 50px;
+    background-color: #000;
+    margin-top: 38.75px;
+    margin-left: auto;
+    grid-area: plus;
+    
+}
+
+.author__plus-sign:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+@media screen and (max-width: 580px) {
+    .author__plus-sign {
+        width: 282px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .author__plus-sign {
+        width: 282px;
+        height: 50px;
+        padding-left: 19px;
+        padding-right: 19px;
+        margin-top: 0px;
+        
+    }
+}
+
+
