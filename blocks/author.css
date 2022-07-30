@@ -83,11 +83,11 @@ margin: 36.25px auto 0;
 
 }
 
-@media screen and (max-width: 735px) {
+/* @media screen and (max-width: 735px) {
     .author__info {
 
     }
-}
+} */
 
 @media screen and (max-width: 320px) {
     .author__info {
