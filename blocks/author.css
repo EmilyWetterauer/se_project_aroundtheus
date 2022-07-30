@@ -188,7 +188,7 @@ margin: 36.25px auto 0;
 .author__pencil {
     padding: 7px;
     border: 1px solid #ffffff;
-    background-image: url("/images/pencil.svg");
+    background-image: url("../images/pencil.svg");
     background-repeat: no-repeat;
     background-position: center;
     width: 24px;
@@ -222,7 +222,7 @@ margin: 36.25px auto 0;
     padding: 14px 64px;
     border: 2px solid #ffffff;
     border-radius: 2px;
-    background-image: url("/images/plussign.svg");
+    background-image: url("../images/plussign.svg");
     background-repeat: no-repeat;
     background-position: center;
     width: 150px;
