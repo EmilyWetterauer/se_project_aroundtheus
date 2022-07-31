@@ -73,7 +73,7 @@ margin: 36.25px auto 0;
 /* .AUTHOR__INFO */
 
 .author__info {
-    font-family: "Inter", Arial, sans-serif;
+    font-family: Inter, Arial, sans-serif;
     color: #ffffff;
     display: grid;
     grid-template-areas: "name pencil" "description description";
@@ -110,7 +110,7 @@ margin: 36.25px auto 0;
 /* .AUTHOR__NAME */
 
 .author__name {
-    font-family: "Inter", Arial, sans-serif;
+    /* font-family: Inter; */
     font-style: normal;
     font-weight: 500;
     font-size: 42px;
@@ -154,7 +154,7 @@ margin: 36.25px auto 0;
 
 .author__description {
     
-    font-family: "Inter", Arial, sans-serif;
+    /* font-family: Inter; */
     font-weight: 400;
     font-size: 18px;
     line-height: 21.78px;
