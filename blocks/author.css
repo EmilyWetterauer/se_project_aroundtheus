@@ -5,7 +5,6 @@
 color: #ffffff;
 display: flex;
 flex-direction: row;
-padding-top: 36.25px;
 max-width: 880px;
     width: 100%;
 margin: 36.25px auto 0;
@@ -34,8 +33,6 @@ margin: 36.25px auto 0;
 
 @media screen and (max-width: 320px) {
     .author {
-        max-width: 282px;
-        flex-wrap: wrap;
         margin-left: 19px;
         margin-right: 19px;
         margin-top: 0px;
@@ -62,9 +59,7 @@ margin: 36.25px auto 0;
 
 @media screen and (max-width: 320px) {
     .author__image {
-        height: 127.5px;
-        padding-left: 78.5px;
-        padding-right: 72.75px;
+        margin-top: 38.25px;
         
     }
 }
@@ -78,45 +73,44 @@ margin: 36.25px auto 0;
     display: grid;
     grid-template-areas: "name pencil" "description description";
     grid-template-columns: minmax(auto, 373px) auto;
-    grid-gap: 16px 18px;
+    gap: 7.5px 18px;
+    margin-top: 0px;
     margin-right: 0px;
 
 }
 
-/* @media screen and (max-width: 735px) {
+@media screen and (max-width: 735px) {
     .author__info {
+        grid-template-columns: minmax(auto, 200px) auto;
+        gap: 4.5px 9px;
 
-    }
-} */
+    } 
+} 
 
 @media screen and (max-width: 320px) {
     .author__info {
     max-width: 282px;
-    grid-template-columns: minmax(auto, auto) auto;
-    grid-template-areas: "name pencil" "description .";
-    grid-template-rows: repeat(2,1fr);
-    grid-gap: 14px 10px;
-    margin-left: 43px;
-    white-space: nowrap;
-    /* height: 78px; */
+    height: 50px;
     margin-bottom: 36px;
-          
+    grid-template-columns: minmax(auto, 282px) auto;
+    grid-template-areas: "name pencil" "description description";
+    grid-template-rows: repeat(2,1fr);
+    gap: 14px 10px;
+    align-items: center;   
     }
 }
-
 
 
 
 /* .AUTHOR__NAME */
 
 .author__name {
-    /* font-family: Inter; */
     font-style: normal;
     font-weight: 500;
     font-size: 42px;
     line-height: 48px;
-    /* height: 39px; */
     max-width: 373px;
+    margin-top: 23.75px;
     margin-bottom: 0px;
     grid-area: name;
     color: #ffffff;
@@ -126,7 +120,7 @@ margin: 36.25px auto 0;
 @media screen and (max-width:735px) {
     .author__name {
         font-size: 22px;
-        padding-top: 13px;
+        
     }
 }
 
@@ -138,12 +132,10 @@ margin: 36.25px auto 0;
 
 @media screen and (max-width: 320px) {
     .author__name {
-        /* height: 22px; */
-        font-size: 22px;
         line-height: 27px;
         margin-top: 26.25px;
         margin-right: 0;
-        text-align: center;
+        text-align: right;
         
     }
 }
@@ -165,6 +157,8 @@ margin: 36.25px auto 0;
     
 }
 
+
+
 @media screen and (max-width: 580px) {
     .author__description {
         text-align: center;
@@ -175,8 +169,7 @@ margin: 36.25px auto 0;
     .author__description {
         font-size: 14px;
         line-height: 14px;
-        text-align:center;
-        margin-bottom: 0px;
+        height: 14px;
         
     }
 }
@@ -194,7 +187,7 @@ margin: 36.25px auto 0;
     height: 24px;
     background-color: rgba(255, 255, 255, 0);
     grid-area: pencil;
-    margin-top: 40px;
+    margin-top: 38px;
     margin-right: 30px;
     
 }
@@ -204,12 +197,20 @@ margin: 36.25px auto 0;
     opacity: .6;
 }
 
+@media screen and (max-width: 735px) {
+    .author__pencil {
+        width: 13px;
+        height: 13px;
+        margin-top: 40px;
+    }
+}
+
 @media screen and (max-width: 320px) {
     .author__pencil {
         width: 7.49px;
         height: 7.5px;
         margin-left: auto;
-        margin-top: 45px; 
+        margin-top: 28px; 
      }
 }
 
@@ -226,7 +227,7 @@ margin: 36.25px auto 0;
     background-position: center;
     width: 150px;
     height: 50px;
-    background-color: #000;
+    background-color: transparent;
     margin-top: 38.75px;
     margin-left: auto;
     grid-area: plus;
@@ -247,10 +248,9 @@ margin: 36.25px auto 0;
 @media screen and (max-width: 320px) {
     .author__plus-sign {
         width: 282px;
-        height: 50px;
         padding-left: 19px;
         padding-right: 19px;
-        margin-top: 0px;
+        margin-top: 36px;
         
     }
 }

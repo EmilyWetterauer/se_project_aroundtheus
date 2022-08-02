@@ -31,8 +31,8 @@ This link to figma contains all the images that I exported to develop this websi
   
 
 
-**Link to Github**  
-https://github.com/EmilyWetterauer/se_project_aroundtheus.git
+**Link to website**  
+https://emilywetterauer.github.io/se_project_aroundtheus/
 
 
 
