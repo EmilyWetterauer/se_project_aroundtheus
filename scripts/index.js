@@ -1,4 +1,4 @@
-const initalCards = [
+const initialCards = [
   (object1 = {
     name: "Yosemite Valley",
     link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
