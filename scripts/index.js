@@ -24,3 +24,16 @@ const initialCards = [
     link: "https://code.s3.yandex.net/web-code/lago.jpg",
   }),
 ];
+
+// EVENT LISTENERS AND HANDLERS
+
+const pencilButtonElement = document.querySelector(".author__pencil");
+const popupElement = document.querySelector(".popup");
+const xButtonElement = document.querySelector(".popup__xButton");
+
+function togglePopupWindow() {
+  popupElement.classList.toggle("popup__opened");
+}
+
+pencilButtonElement.addEventListener("click", togglePopupWindow);
+xButtonElement.addEventListener("click", togglePopupWindow);
