@@ -38,70 +38,7 @@
         </section>
 
         <section class="cards">
-          <ul class="cards__list">
-            <li class="card">
-              <img
-                src="images/yosemite-valley.jpg"
-                alt="Yosemite Valley"
-                class="card__image"
-              />
-              <div class="card__description">
-                <h2 class="card__title">Yosemite Valley</h2>
-                <button type="button" class="card__like-button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="images/lake-louise.png"
-                alt="Lake Louise"
-                class="card__image"
-              />
-              <div class="card__description">
-                <h2 class="card__title">Lake Louise</h2>
-                <button type="button" class="card__like-button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="images/bald-mountains.png"
-                alt="Bald Mountains"
-                class="card__image"
-              />
-              <div class="card__description">
-                <h2 class="card__title">Bald Mountains</h2>
-                <button type="button" class="card__like-button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img src="images/latemar.png" alt="Latemar" class="card__image" />
-              <div class="card__description">
-                <h2 class="card__title">Latemar</h2>
-                <button type="button" class="card__like-button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="images/vanoise-national-park.png"
-                alt="Vanoise National Park"
-                class="card__image"
-              />
-              <div class="card__description">
-                <h2 class="card__title block">Vanoise National Park</h2>
-                <button type="button" class="card__like-button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="images/lago-di-braies.png"
-                alt="Lago di Braies"
-                class="card__image"
-              />
-              <div class="card__description">
-                <h2 class="card__title">Lago di Braies</h2>
-                <button type="button" class="card__like-button"></button>
-              </div>
-            </li>
-          </ul>
+          <ul class="cards__list"></ul>
         </section>
       </main>
       <footer class="footer">
@@ -122,17 +59,26 @@
               id="popup__name"
             />
             <input
-              class="popup__occupation"
+              class="popup__description"
               type="text"
-              name="occupation"
-              id="popup__occupation"
+              name="description"
+              id="popup__description"
             />
-            <button class="popup__saveButton">Save</button>
+            <button class="popup__saveButton" type="submit">Save</button>
           </form>
         </div>
       </div>
       <!-- End of Overlay Edit Profile popup window -->
     </div>
+    <template id="cardTemplate">
+      <li class="card">
+        <img src="" alt="" class="card__image" />
+        <div class="card__description">
+          <h2 class="card__title"></h2>
+          <button type="button" class="card__like-button"></button>
+        </div>
+      </li>
+    </template>
     <script src="/scripts/index.js"></script>
   </body>
 </html>
