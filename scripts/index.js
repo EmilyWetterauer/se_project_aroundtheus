@@ -38,27 +38,18 @@ const inputDescriptionElement = document.querySelector(".popup__description");
 const inputNameElement = document.querySelector(".popup__name");
 const saveButtonElement = document.querySelector(".popup__saveButton");
 
-// Declare a getCardElement() function with one parameter named data.
-//You’ll be passing objects of the array to it. The function should:
 function getCardElement(data) {
-  // clone the template element with all its content and store it in
-  //a cardElement variable
   const cardTemplate = document.querySelector("#cardTemplate").content;
   const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
 
-  // access the card title and image and store them in variables
   const cardTitleElement = cardElement.querySelector(".card__title");
   const cardImageElement = cardElement.querySelector(".card__image");
-  // set the path to the image to the link field of the object
+
   cardImageElement.src = data.link;
-  // set the image alt text to the name field of the object
   cardImageElement.alt = data.name;
-  // set the card title to the name field of the object, too
   cardTitleElement.textContent = data.name;
-  // return the ready HTML element with the filled-in data
   return cardElement;
 }
-//Iterate over the cards array using a loop and run your new function upon each iteration to render the card one by one.
 
 for (const card of initialCards) {
   const cardLink = card.link;
