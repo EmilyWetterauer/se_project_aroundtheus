@@ -36,7 +36,7 @@ const profileDescriptionElement = document.querySelector(
 );
 const inputDescriptionElement = document.querySelector(".popup__description");
 const inputNameElement = document.querySelector(".popup__name");
-const saveButtonElement = document.querySelector(".popup__saveButton");
+const editProfileFormElement = document.querySelector(".popup__form");
 
 function getCardElement(data) {
   const cardTemplate = document.querySelector("#cardTemplate").content;
@@ -52,13 +52,7 @@ function getCardElement(data) {
 }
 
 for (const card of initialCards) {
-  const cardLink = card.link;
-  const cardName = card.name;
-  const cardData = {
-    name: cardName,
-    link: cardLink,
-  };
-  const cardDataElement = getCardElement(cardData);
+  const cardDataElement = getCardElement(card);
 
   cardListElement.append(cardDataElement);
 }
@@ -66,7 +60,7 @@ for (const card of initialCards) {
 // EVENT LISTENERS
 pencilButtonElement.addEventListener("click", setInputValues);
 xButtonElement.addEventListener("click", togglePopupWindow);
-saveButtonElement.addEventListener("click", handleProfileFormSubmit);
+editProfileFormElement.addEventListener("submit", handleProfileFormSubmit);
 
 //EVENT HANDLERS
 function setInputValues() {
@@ -76,7 +70,7 @@ function setInputValues() {
 }
 
 function togglePopupWindow() {
-  popupElement.classList.toggle("popup__opened");
+  popupElement.classList.toggle("popup_opened");
 }
 
 function handleProfileFormSubmit(evt) {
