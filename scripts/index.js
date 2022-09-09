@@ -51,11 +51,11 @@ function getCardElement(data) {
   return cardElement;
 }
 
-for (const card of initialCards) {
+  initialCards.forEach(function(card, index, array) {
   const cardDataElement = getCardElement(card);
 
   cardListElement.append(cardDataElement);
-}
+});
 
 // EVENT LISTENERS
 pencilButtonElement.addEventListener("click", setInputValues);
