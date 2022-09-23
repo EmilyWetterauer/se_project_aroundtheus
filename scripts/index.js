@@ -53,11 +53,24 @@ initialCards.forEach(function(card, index, array) {
   
   cardLikeButtonElement.addEventListener("click", function() {
     cardLikeButtonElement.classList.toggle("card__like-button-clicked")
+
   });
-  
-  
-  
+
+  //create a dom element for trash Can
+  const cardTrashCanButtonElement = cardDataElement.querySelector(".card__trashCanButton");
+  //create an event listener for trash can
+  cardTrashCanButtonElement.addEventListener("click", function(card) {
+    // console.log("card", cardDataElement);
+    //create a classList.remove  for the whole card once the trash can button is clicked.----look to line 145.
+    cardDataElement.remove();
+    //make sure this all runs on the added cards as well as the original array
+  });
+
 });
+  
+  
+  
+
 
 
 
@@ -129,7 +142,24 @@ function handleNewCardFormSubmit(evt) {
     cardLikeButtonElement.addEventListener("click", function() {
       cardLikeButtonElement.classList.toggle("card__like-button-clicked")
     });
+//create a dom element for trash Can
+const cardTrashCanButtonElement = cardDataElement.querySelector(".card__trashCanButton");
+//create an event listener for trash can
+cardTrashCanButtonElement.addEventListener("click", function(card) {
+  // console.log("card", cardDataElement);
+  //create a classList.remove  for the whole card once the trash can button is clicked.----look to line 145.
+  cardDataElement.remove();
+  //make sure this all runs on the added cards as well as the original array
+});
+
     toggleCardPopupWindow();
+}
+
+
+//create handle to delete the card when eventlistener for trash can runs..
+
+function handleDeleteCard () {
+
 }
 
 
