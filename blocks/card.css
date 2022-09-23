@@ -12,6 +12,23 @@
   background-color: black;
 }
 
+.card__trashCanButtonContainer {
+  display:inline-block;
+position:relative;
+
+}
+
+.card__trashCanButton {
+  background-image: url("../images/Trash.svg");
+  position: absolute;
+  border: none;
+  background-color: transparent;
+  width: 18px;
+  height: 19.3px;
+  right: 15px;
+  top: 18px;
+}
+
 .card__description {
   display: flex;
   flex-direction: row;
@@ -21,7 +38,7 @@
   margin-right: 15px;
 }
 
-.card__title {
+.card__name {
   font-family: Inter, Arial, sans-serif;
   font-style: normal;
   font-weight: 900;
@@ -38,10 +55,15 @@
   height: 18.13px;
   width: 20.76px;
   border: none;
-  background-color: #fff;
+  background-color:#fff;
 }
 
 .card__like-button:hover {
   cursor: pointer;
   opacity: 0.5;
+}
+
+.card__like-button-clicked {
+  background-image: url("../images/Union.png");
+  
 }
