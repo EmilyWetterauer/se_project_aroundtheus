@@ -26,51 +26,83 @@ const initialCards = [
 ];
 
 // DOM ELEMENTS
+const addNewCardButtonElement = document.querySelector(".author__plus-sign");
+const newCardPopupElement = document.querySelector("#newCardPopup");
 const cardListElement = document.querySelector(".cards__list");
 const pencilButtonElement = document.querySelector(".author__pencil");
-const popupElement = document.querySelector(".popup");
-const xButtonElement = document.querySelector(".popup__xButton");
+const profilePopupElement = document.querySelector("#profilePopup");
+const profileXButtonElement = document.querySelector("#profileXButton");
+const newCardXButtonElement = document.querySelector("#newCardXButton");
+
 const profileNameElement = document.querySelector(".author__name");
-const profileDescriptionElement = document.querySelector(
-  ".author__description"
-);
+const profileDescriptionElement = document.querySelector(".author__description");
 const inputDescriptionElement = document.querySelector(".popup__description");
 const inputNameElement = document.querySelector(".popup__name");
 const editProfileFormElement = document.querySelector(".popup__form");
+const newCardTitleInputElement = document.querySelector("#popup__newCardTitle");
+const newCardImageInputElement = document.querySelector("#popup__newCardImage");
+
+
+//FUNCTION FOR --INITIAL CARDS ARRAY
+
+initialCards.forEach(function(card, index, array) {
+  const cardDataElement = getCardElement(card);
+  
+  cardListElement.append(cardDataElement);
+  const cardLikeButtonElement = cardDataElement.querySelector(".card__like-button");
+  
+  cardLikeButtonElement.addEventListener("click", function() {
+    cardLikeButtonElement.classList.toggle("card__like-button-clicked")
+  });
+  
+  
+  
+});
+
+
+
+
+// EVENT LISTENERS
+pencilButtonElement.addEventListener("click", setInputValues);
+profileXButtonElement.addEventListener("click", togglePopupWindow);
+editProfileFormElement.addEventListener("submit", handleProfileFormSubmit);
+newCardPopupElement.addEventListener("submit", handleNewCardFormSubmit);
+
+addNewCardButtonElement.addEventListener("click", toggleCardPopupWindow);
+newCardXButtonElement.addEventListener("click", toggleCardPopupWindow);
+
+
+//FUNCTIONS
 
 function getCardElement(data) {
   const cardTemplate = document.querySelector("#cardTemplate").content;
   const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
 
-  const cardTitleElement = cardElement.querySelector(".card__title");
+  const cardTitleElement = cardElement.querySelector(".card__name");
   const cardImageElement = cardElement.querySelector(".card__image");
 
   cardImageElement.src = data.link;
   cardImageElement.alt = data.name;
   cardTitleElement.textContent = data.name;
+
+
   return cardElement;
 }
 
-  initialCards.forEach(function(card, index, array) {
-  const cardDataElement = getCardElement(card);
 
-  cardListElement.append(cardDataElement);
-});
-
-// EVENT LISTENERS
-pencilButtonElement.addEventListener("click", setInputValues);
-xButtonElement.addEventListener("click", togglePopupWindow);
-editProfileFormElement.addEventListener("submit", handleProfileFormSubmit);
-
-//EVENT HANDLERS
+//FUNCTIONS--EVENT HANDLERS
 function setInputValues() {
   inputNameElement.value = profileNameElement.textContent;
   inputDescriptionElement.value = profileDescriptionElement.textContent;
   togglePopupWindow();
 }
 
+
 function togglePopupWindow() {
-  popupElement.classList.toggle("popup_opened");
+  profilePopupElement.classList.toggle("popup_opened");
+}
+function toggleCardPopupWindow() {
+  newCardPopupElement.classList.toggle("popup_opened");
 }
 
 function handleProfileFormSubmit(evt) {
@@ -79,3 +111,27 @@ function handleProfileFormSubmit(evt) {
   profileDescriptionElement.textContent = inputDescriptionElement.value;
   togglePopupWindow();
 }
+
+function handleNewCardFormSubmit(evt) {
+  evt.preventDefault();
+
+  const newCardObject = 
+    {
+      name: newCardTitleInputElement.value,
+      link: newCardImageInputElement.value,
+    }
+    const cardDataElement = getCardElement(newCardObject);
+
+    cardListElement.prepend(cardDataElement);
+    
+    const cardLikeButtonElement = cardDataElement.querySelector(".card__like-button");
+    
+    cardLikeButtonElement.addEventListener("click", function() {
+      cardLikeButtonElement.classList.toggle("card__like-button-clicked")
+    });
+    toggleCardPopupWindow();
+}
+
+
+
+
