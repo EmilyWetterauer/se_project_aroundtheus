@@ -41,9 +41,12 @@ const inputNameElement = document.querySelector(".popup__name");
 const editProfileFormElement = document.querySelector(".popup__form");
 const newCardTitleInputElement = document.querySelector("#popup__newCardTitle");
 const newCardImageInputElement = document.querySelector("#popup__newCardImage");
+const popupImageWrapperElement = document.querySelector("#popupImageWrapper");
+const imageXButtonElement = document.querySelector("#imageOpenedXButton");
+const popupImageElement = document.querySelector(".popup__image");
+const popupTitleElement = document.querySelector(".popup__imageTitle");
 
-
-//FUNCTION FOR --INITIAL CARDS ARRAY
+//FUNCTION FOR EACH--INITIAL CARD in the ARRAY
 
 initialCards.forEach(function(card, index, array) {
   const cardDataElement = getCardElement(card);
@@ -56,23 +59,22 @@ initialCards.forEach(function(card, index, array) {
 
   });
 
-  //create a dom element for trash Can
   const cardTrashCanButtonElement = cardDataElement.querySelector(".card__trashCanButton");
-  //create an event listener for trash can
-  cardTrashCanButtonElement.addEventListener("click", function(card) {
-    // console.log("card", cardDataElement);
-    //create a classList.remove  for the whole card once the trash can button is clicked.----look to line 145.
+  cardTrashCanButtonElement.addEventListener("click", function() {
     cardDataElement.remove();
-    //make sure this all runs on the added cards as well as the original array
   });
-
+  
+  
+  const cardImageElement = cardDataElement.querySelector(".card__image");
+  cardImageElement.addEventListener("click", function(event) {
+    
+    toggleCardImageOpenedWindow()
+    popupImageElement.src = event.target.src
+   popupTitleElement.textContent = event.target.alt
+  });
+  
+  
 });
-  
-  
-  
-
-
-
 
 
 // EVENT LISTENERS
@@ -83,6 +85,7 @@ newCardPopupElement.addEventListener("submit", handleNewCardFormSubmit);
 
 addNewCardButtonElement.addEventListener("click", toggleCardPopupWindow);
 newCardXButtonElement.addEventListener("click", toggleCardPopupWindow);
+imageXButtonElement.addEventListener("click", toggleCardImageOpenedWindow);
 
 
 //FUNCTIONS
@@ -90,15 +93,15 @@ newCardXButtonElement.addEventListener("click", toggleCardPopupWindow);
 function getCardElement(data) {
   const cardTemplate = document.querySelector("#cardTemplate").content;
   const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
-
+  
   const cardTitleElement = cardElement.querySelector(".card__name");
   const cardImageElement = cardElement.querySelector(".card__image");
-
+  
   cardImageElement.src = data.link;
   cardImageElement.alt = data.name;
   cardTitleElement.textContent = data.name;
-
-
+  
+  
   return cardElement;
 }
 
@@ -110,6 +113,10 @@ function setInputValues() {
   togglePopupWindow();
 }
 
+function toggleCardImageOpenedWindow() {
+   popupImageWrapperElement.classList.toggle("popup_opened");
+   
+ };
 
 function togglePopupWindow() {
   profilePopupElement.classList.toggle("popup_opened");
@@ -142,25 +149,22 @@ function handleNewCardFormSubmit(evt) {
     cardLikeButtonElement.addEventListener("click", function() {
       cardLikeButtonElement.classList.toggle("card__like-button-clicked")
     });
-//create a dom element for trash Can
 const cardTrashCanButtonElement = cardDataElement.querySelector(".card__trashCanButton");
-//create an event listener for trash can
 cardTrashCanButtonElement.addEventListener("click", function(card) {
-  // console.log("card", cardDataElement);
-  //create a classList.remove  for the whole card once the trash can button is clicked.----look to line 145.
   cardDataElement.remove();
-  //make sure this all runs on the added cards as well as the original array
 });
+
+const cardImageElement = cardDataElement.querySelector(".card__image");
+  cardImageElement.addEventListener("click", function(event) {
+    
+    toggleCardImageOpenedWindow()
+    popupImageElement.src = event.target.src
+   popupTitleElement.textContent = event.target.alt
+  });
 
     toggleCardPopupWindow();
 }
 
-
-//create handle to delete the card when eventlistener for trash can runs..
-
-function handleDeleteCard () {
-
-}
 
 
 

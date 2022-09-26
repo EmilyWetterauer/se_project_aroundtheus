@@ -184,3 +184,29 @@
     font-size: 14px;
   }
 }
+
+/* TO DO: correct x button distance from container*/
+
+
+.popup__imageContainer {
+  width: 433px;
+  height: 540px;
+  background-color: transparent;
+}
+
+.popup__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.popup__imageTitle {
+  font-weight: 400;
+  width: 291px;
+  color: #fff;
+  font-size: 12px;
+  line-height: 14.52px;
+  margin-left: 0px;
+  padding: 0px;
+  margin-top: 10px;
+}
