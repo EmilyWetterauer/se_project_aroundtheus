@@ -96,11 +96,10 @@
 
 @media screen and (max-width: 580px) {
   .popup__closeBox {
-     right: 0px; 
-     max-height: 26px;
-    max-width: 26px; 
-
-   }
+    right: 0px;
+    max-height: 26px;
+    max-width: 26px;
+  }
 } 
 
 .popup__form {
