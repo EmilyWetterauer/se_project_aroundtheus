@@ -202,10 +202,33 @@
   background-color: transparent;
 }
 
+@media screen and (max-width: 580px) {
+  .popup__imageContainer {
+    width: 240px;
+    height: 299px;
+  }
+}
+
 .popup__image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+#imageOpenedXButton {
+  position: absolute;
+  top: -39px;
+  right: -40px;
+
+}
+@media screen and (max-width: 580px) {
+  #imageOpenedXButton {
+    max-height: 30px;
+    max-width: 30px;
+    top: -27px;
+    right: -29px;
+
+  }
 }
 
 .popup__imageTitle {
