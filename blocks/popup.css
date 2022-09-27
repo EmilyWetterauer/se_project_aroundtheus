@@ -62,7 +62,6 @@
   }
 }
 
-
 .popup__xButton {
   position: absolute;
   top: -35px;
@@ -81,7 +80,6 @@
     max-width: 26px;
     top: -43.62px;
     right: 5px;
-    
   }
 }
 
@@ -89,10 +87,10 @@
   opacity: 0.6;
 }
 
- .popup__closeBox {
+.popup__closeBox {
   position: relative;
   max-width: 100%;
-} 
+}
 
 @media screen and (max-width: 580px) {
   .popup__closeBox {
@@ -100,7 +98,7 @@
     max-height: 26px;
     max-width: 26px;
   }
-} 
+}
 
 .popup__form {
   display: flex;
@@ -119,7 +117,6 @@
     width: 238px;
     margin-left: 22px;
     margin-right: 22px;
-
   }
 }
 
@@ -135,11 +132,10 @@
 }
 
 @media screen and (max-width: 580px) {
-  .popup__name { 
+  .popup__name {
     width: 238px;
     padding-bottom: 13px;
     margin-bottom: 30px;
-    
   }
 }
 
@@ -179,7 +175,7 @@
 }
 
 .popup__saveButton:hover {
-  background-color: rgba(0,0,0,0.8); 
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 @media screen and (max-width: 580px) {
@@ -193,7 +189,6 @@
 }
 
 /* TO DO: correct x button distance from container*/
-
 
 .popup__imageContainer {
   width: 433px;
@@ -218,7 +213,6 @@
   position: absolute;
   top: -39px;
   right: -40px;
-
 }
 @media screen and (max-width: 580px) {
   #imageOpenedXButton {
@@ -226,7 +220,6 @@
     max-width: 30px;
     top: -27px;
     right: -29px;
-
   }
 }
 

@@ -13,9 +13,8 @@
 }
 
 .card__trashCanButtonContainer {
-  display:inline-block;
-position:relative;
-
+  display: inline-block;
+  position: relative;
 }
 
 .card__trashCanButton {
@@ -55,7 +54,7 @@ position:relative;
   height: 18.13px;
   width: 20.76px;
   border: none;
-  background-color:#fff;
+  background-color: #fff;
 }
 
 .card__like-button:hover {
@@ -65,5 +64,4 @@ position:relative;
 
 .card__like-button-clicked {
   background-image: url("../images/Union.png");
-  
 }
