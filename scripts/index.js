@@ -53,11 +53,15 @@ closeButtons.forEach(function (button) {
   const popup = button.closest(".popup");
 
   button.addEventListener("click", function () {
-    togglePopup(popup);
+    closePopup(popup);
   });
 });
-function togglePopup(popupElement) {
-  popupElement.classList.toggle("popup_opened");
+function openPopup(popupElement) {
+  popupElement.classList.add("popup_opened");
+}
+
+function closePopup(popupElement) {
+  popupElement.classList.remove("popup_opened");
 }
 
 //FUNCTION FOREACH INITIAL CARD in the ARRAY
@@ -74,7 +78,7 @@ editProfileFormElement.addEventListener("submit", handleProfileFormSubmit);
 newCardPopupElement.addEventListener("submit", handleNewCardFormSubmit);
 
 addNewCardButtonElement.addEventListener("click", function () {
-  togglePopup(newCardPopupElement);
+  openPopup(newCardPopupElement);
 });
 
 //FUNCTIONS
@@ -109,10 +113,10 @@ function getCardElement(data) {
   //THIRD//
 
   cardImageElement.addEventListener("click", function (event) {
-    popupImageElement.src = event.target.src;
-    popupImageElement.alt = event.target.alt;
-    popupTitleElement.textContent = event.target.alt;
-    togglePopup(popupImageWrapperElement);
+    popupImageElement.src = data.link;
+    popupImageElement.alt = data.name;
+    popupTitleElement.textContent = data.name;
+    openPopup(popupImageWrapperElement);
   });
 
   return cardElement;
@@ -122,14 +126,15 @@ function getCardElement(data) {
 function openProfilePopup() {
   inputNameElement.value = profileNameElement.textContent;
   inputDescriptionElement.value = profileDescriptionElement.textContent;
-  togglePopup(profilePopupElement);
+  openPopup(profilePopupElement);
 }
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileNameElement.textContent = inputNameElement.value;
   profileDescriptionElement.textContent = inputDescriptionElement.value;
-  togglePopup(profilePopupElement);
+  evt.target.reset();
+  closePopup(profilePopupElement);
 }
 
 function handleNewCardFormSubmit(evt) {
@@ -142,6 +147,8 @@ function handleNewCardFormSubmit(evt) {
   const cardDataElement = getCardElement(newCardObject);
 
   cardListElement.prepend(cardDataElement);
+  //********ADDED A RESET HERE...TO TAKE OUT INPUTS AFTER SAVED OR CLOSED
+  evt.target.reset();
 
-  togglePopup(newCardPopupElement);
+  closePopup(newCardPopupElement);
 }
