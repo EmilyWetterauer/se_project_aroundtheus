@@ -31,8 +31,6 @@ const newCardPopupElement = document.querySelector("#newCardPopup");
 const cardListElement = document.querySelector(".cards__list");
 const pencilButtonElement = document.querySelector(".author__pencil");
 const profilePopupElement = document.querySelector("#profilePopup");
-// const profileXButtonElement = document.querySelector("#profileXButton");
-// const newCardXButtonElement = document.querySelector("#newCardXButton");
 
 const profileNameElement = document.querySelector(".author__name");
 const profileDescriptionElement = document.querySelector(
@@ -44,7 +42,6 @@ const editProfileFormElement = document.querySelector(".popup__form");
 const newCardTitleInputElement = document.querySelector("#popup__newCardTitle");
 const newCardImageInputElement = document.querySelector("#popup__newCardImage");
 const popupImageWrapperElement = document.querySelector("#popupImageWrapper");
-// const imageXButtonElement = document.querySelector("#imageOpenedXButton");
 const popupImageElement = document.querySelector(".popup__image");
 const popupTitleElement = document.querySelector(".popup__imageTitle");
 
@@ -53,10 +50,8 @@ const closeButtons = document.querySelectorAll(".popup__closeBox");
 
 //UNIVERSAL CLOSE BUTTON--FOREACH FUNCTION
 closeButtons.forEach(function (button) {
-  // find the closest popup
   const popup = button.closest(".popup");
 
-  // set the listener
   button.addEventListener("click", function () {
     togglePopup(popup);
   });
@@ -75,7 +70,6 @@ initialCards.forEach(function (card, index, array) {
 
 // EVENT LISTENERS
 pencilButtonElement.addEventListener("click", openProfilePopup);
-// profileXButtonElement.addEventListener("click", togglePopupWindow);
 editProfileFormElement.addEventListener("submit", handleProfileFormSubmit);
 newCardPopupElement.addEventListener("submit", handleNewCardFormSubmit);
 
@@ -116,8 +110,8 @@ function getCardElement(data) {
 
   cardImageElement.addEventListener("click", function (event) {
     popupImageElement.src = event.target.src;
+    popupImageElement.alt = event.target.alt;
     popupTitleElement.textContent = event.target.alt;
-    // toggleCardImageOpenedWindow()
     togglePopup(popupImageWrapperElement);
   });
 
@@ -128,7 +122,6 @@ function getCardElement(data) {
 function openProfilePopup() {
   inputNameElement.value = profileNameElement.textContent;
   inputDescriptionElement.value = profileDescriptionElement.textContent;
-  // togglePopupWindow();
   togglePopup(profilePopupElement);
 }
 
