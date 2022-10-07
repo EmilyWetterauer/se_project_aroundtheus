@@ -45,6 +45,78 @@ const popupImageWrapperElement = document.querySelector("#popupImageWrapper");
 const popupImageElement = document.querySelector(".popup__image");
 const popupTitleElement = document.querySelector(".popup__imageTitle");
 
+//project 6  **************
+//---STEP 1---
+
+const showInputError = (formElement, inputElement, errorMessage) => {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.add("form__input_type_error");
+  debugger;
+  errorElement.textContent = errorMessage;
+  errorElement.classList.add("form__input-error_active");
+};
+
+const hideInputError = (formElement, inputElement) => {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.remove("form__input_type_error");
+  errorElement.classList.remove("form__input-error_active");
+  errorElement.textContent = "";
+};
+
+const checkInputValidity = (formElement, inputElement) => {
+  if (!inputElement.validity.valid) {
+    showInputError(formElement, inputElement, inputElement.validationMessage);
+  } else {
+    hideInputError(formElement, inputElement);
+  }
+};
+
+const hasInvalidInput = (inputList) => {
+  return inputList.some((inputElement) => {
+    return !inputElement.validity.valid;
+  });
+};
+
+const toggleButtonState = (inputList, buttonElement) => {
+  if (hasInvalidInput(inputList)) {
+    buttonElement.classList.add("popup__saveButton-inactive");
+    buttonElement.disabled = true;
+  } else {
+    buttonElement.classList.remove("popup__saveButton-inactive");
+    buttonElement.disabled = false;
+  }
+};
+
+const setEventListeners = (formElement) => {
+  const inputList = Array.from(formElement.querySelectorAll(".form__input"));
+  const buttonElement = formElement.querySelector(".popup__saveButton");
+  // toggleButtonState(inputList, buttonElement);
+  inputList.forEach((inputElement) => {
+    inputElement.addEventListener("input", function () {
+      checkInputValidity(formElement, inputElement);
+      toggleButtonState(inputList, buttonElement);
+    });
+  });
+};
+
+const enableValidation = () => {
+  const formList = Array.from(document.querySelectorAll(".popup__form"));
+  formList.forEach((formElement) => {
+    formElement.addEventListener("submit", function (evt) {
+      evt.preventDefault();
+    });
+    setEventListeners(formElement);
+  });
+};
+
+enableValidation();
+
+//use default error messages of the browser
+
+//set SAVE BUTTON to INACTIVE until its all valid
+
+//END OF STEP 1---
+
 //UNIVERSAL CLOSE BUTTON--CONST//
 const closeButtons = document.querySelectorAll(".popup__closeBox");
 
@@ -62,6 +134,17 @@ function openPopup(popupElement) {
 
 function closePopup(popupElement) {
   popupElement.classList.remove("popup_opened");
+
+  const formElement = popupElement.querySelector(".popup__form");
+  formElement.reset();
+  const inputList = Array.from(formElement.querySelectorAll(".form__input"));
+  inputList.forEach((input) => {
+    hideInputError(formElement, input);
+  });
+  const buttonElement = popupElement.querySelector(".popup__saveButton");
+
+  buttonElement.classList.remove("popup__saveButton-inactive");
+  buttonElement.disabled = false;
 }
 
 //FUNCTION FOREACH INITIAL CARD in the ARRAY
@@ -129,6 +212,7 @@ function openProfilePopup() {
   openPopup(profilePopupElement);
 }
 
+//disable submit save button
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileNameElement.textContent = inputNameElement.value;

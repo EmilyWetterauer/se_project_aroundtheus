@@ -156,6 +156,37 @@
   }
 }
 
+.form__input_type_error {
+  border-bottom-color: red;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-top: 13px;
+}
+
+.form__input-error_active {
+  /* overflow: hidden; */
+  /* white-space: nowrap; */
+  text-align: left;
+  color: #ff0000;
+  font-size: 12px;
+  line-height: 15px;
+  /* position: absolute; */
+  /* max-width: 358px; */
+  /* max-width: 140px; */
+  /* min-width: 358px; */
+}
+
+.form__input-error {
+  min-width: 358px;
+  /* max-width: 238px; */
+}
+@media screen and (max-width: 580px) {
+  .form__input-error {
+    min-width: 238px;
+    /* max-width: 238px; */
+  }
+}
+
 .popup__saveButton {
   height: 50.15px;
   background-color: #000;
@@ -186,6 +217,17 @@
     margin-bottom: 25px;
     font-size: 14px;
   }
+}
+
+.popup__saveButton-inactive {
+  border: solid #000 1px;
+  background-color: #fff;
+  color: #000;
+  opacity: 0.2;
+}
+
+.popup__saveButton-inactive:hover {
+  background-color: #fff;
 }
 
 /* TO DO: correct x button distance from container*/
