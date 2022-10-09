@@ -51,7 +51,6 @@ const popupTitleElement = document.querySelector(".popup__imageTitle");
 const showInputError = (formElement, inputElement, errorMessage) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.add("form__input_type_error");
-  debugger;
   errorElement.textContent = errorMessage;
   errorElement.classList.add("form__input-error_active");
 };
@@ -111,11 +110,24 @@ const enableValidation = () => {
 
 enableValidation();
 
-//use default error messages of the browser
-
-//set SAVE BUTTON to INACTIVE until its all valid
-
 //END OF STEP 1---
+
+//OVERLAY IDENTIFIER AND CLOSER USING A CLICK//
+const closeOverlays = document.querySelectorAll(".popup");
+
+closeOverlays.forEach(function (overlay) {
+  overlay.addEventListener("click", function (event) {
+    if (event.target === event.currentTarget) {
+      closePopup(overlay);
+    }
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      closePopup(overlay);
+    }
+  });
+});
 
 //UNIVERSAL CLOSE BUTTON--CONST//
 const closeButtons = document.querySelectorAll(".popup__closeBox");
@@ -136,15 +148,17 @@ function closePopup(popupElement) {
   popupElement.classList.remove("popup_opened");
 
   const formElement = popupElement.querySelector(".popup__form");
-  formElement.reset();
-  const inputList = Array.from(formElement.querySelectorAll(".form__input"));
-  inputList.forEach((input) => {
-    hideInputError(formElement, input);
-  });
-  const buttonElement = popupElement.querySelector(".popup__saveButton");
+  if (formElement !== null) {
+    formElement.reset();
+    const inputList = Array.from(formElement.querySelectorAll(".form__input"));
+    inputList.forEach((input) => {
+      hideInputError(formElement, input);
+    });
+    const buttonElement = popupElement.querySelector(".popup__saveButton");
 
-  buttonElement.classList.remove("popup__saveButton-inactive");
-  buttonElement.disabled = false;
+    buttonElement.classList.remove("popup__saveButton-inactive");
+    buttonElement.disabled = false;
+  }
 }
 
 //FUNCTION FOREACH INITIAL CARD in the ARRAY
