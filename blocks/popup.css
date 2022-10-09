@@ -156,14 +156,14 @@
   }
 }
 
-.popup__form_input-type-error {
+.popup__form-input-type-error {
   border-bottom-color: red;
   margin-bottom: 0px;
   margin-left: 0px;
   margin-top: 13px;
 }
 
-.popup__form_input-error-active {
+.popup__form-input-error-active {
   /* overflow: hidden; */
   /* white-space: nowrap; */
   text-align: left;
@@ -173,11 +173,11 @@
   
 }
 
-.popup__form_input-error {
+.popup__form-input-error {
   min-width: 358px;
 }
 @media screen and (max-width: 580px) {
-  .popup__form_input-error {
+  .popup__form-input-error {
     min-width: 238px;
   }
 }
