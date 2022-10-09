@@ -1,3 +1,5 @@
+import { enableValidation } from "./validate"; 
+
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -183,3 +185,12 @@ function handleNewCardFormSubmit(evt) {
 
   closePopup(newCardPopupElement);
 }
+
+enableValidation({
+  formSelector: ".popup__form",
+  inputSelector: ".form__input",
+  submitButtonSelector: ".popup__saveButton",
+  inactiveButtonClass: "popup__saveButton-inactive",
+  inputErrorClass: "form__input_type_error",
+  errorClass: "form__input-error_active"
+}); 
