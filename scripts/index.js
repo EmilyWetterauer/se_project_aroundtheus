@@ -3,11 +3,11 @@ console.log("enable validation", enableValidation);
 
 const selectors = {
   formSelector: ".popup__form",
-  inputSelector: ".form__input",
+  inputSelector: ".popup__form_input",
   submitButtonSelector: ".popup__saveButton",
   inactiveButtonClass: "popup__saveButton-inactive",
-  inputErrorClass: "form__input_type_error",
-  errorClass: "form__input-error_active"
+  inputErrorClass: "popup__form_input-type-error",
+  errorClass: "popup__form_input-error-active"
 }; 
 
 const initialCards = [
@@ -96,7 +96,7 @@ function closePopup(popupElement) {
   const formElement = popupElement.querySelector(".popup__form");
   if (formElement !== null) {
     formElement.reset();
-    const inputList = Array.from(formElement.querySelectorAll(".form__input"));
+    const inputList = Array.from(formElement.querySelectorAll(".popup__form_input"));
     inputList.forEach((input) => {
       hideInputError(selectors, formElement, input);
       console.log("hideinputError", hideInputError);
