@@ -31,11 +31,8 @@ const newCardPopupElement = document.querySelector("#newCardPopup");
 const cardListElement = document.querySelector(".cards__list");
 const pencilButtonElement = document.querySelector(".author__pencil");
 const profilePopupElement = document.querySelector("#profilePopup");
-
 const profileNameElement = document.querySelector(".author__name");
-const profileDescriptionElement = document.querySelector(
-  ".author__description"
-);
+const profileDescriptionElement = document.querySelector(".author__description");
 const inputDescriptionElement = document.querySelector(".popup__description");
 const inputNameElement = document.querySelector(".popup__name");
 const editProfileFormElement = document.querySelector(".popup__form");
@@ -45,8 +42,6 @@ const popupImageWrapperElement = document.querySelector("#popupImageWrapper");
 const popupImageElement = document.querySelector(".popup__image");
 const popupTitleElement = document.querySelector(".popup__imageTitle");
 
-//project 6  **************
-//---STEP 1---
 
 const showInputError = (formElement, inputElement, errorMessage) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
@@ -89,7 +84,6 @@ const toggleButtonState = (inputList, buttonElement) => {
 const setEventListeners = (formElement) => {
   const inputList = Array.from(formElement.querySelectorAll(".form__input"));
   const buttonElement = formElement.querySelector(".popup__saveButton");
-  // toggleButtonState(inputList, buttonElement);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", function () {
       checkInputValidity(formElement, inputElement);
@@ -110,7 +104,6 @@ const enableValidation = () => {
 
 enableValidation();
 
-//END OF STEP 1---
 
 //OVERLAY IDENTIFIER AND CLOSER USING A CLICK//
 const closeOverlays = document.querySelectorAll(".popup");
@@ -245,7 +238,6 @@ function handleNewCardFormSubmit(evt) {
   const cardDataElement = getCardElement(newCardObject);
 
   cardListElement.prepend(cardDataElement);
-  //********ADDED A RESET HERE...TO TAKE OUT INPUTS AFTER SAVED OR CLOSED
   evt.target.reset();
 
   closePopup(newCardPopupElement);

@@ -170,20 +170,15 @@
   color: #ff0000;
   font-size: 12px;
   line-height: 15px;
-  /* position: absolute; */
-  /* max-width: 358px; */
-  /* max-width: 140px; */
-  /* min-width: 358px; */
+  
 }
 
 .form__input-error {
   min-width: 358px;
-  /* max-width: 238px; */
 }
 @media screen and (max-width: 580px) {
   .form__input-error {
     min-width: 238px;
-    /* max-width: 238px; */
   }
 }
 
@@ -230,7 +225,6 @@
   background-color: #fff;
 }
 
-/* TO DO: correct x button distance from container*/
 
 .popup__imageContainer {
   width: 433px;
