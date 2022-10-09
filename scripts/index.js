@@ -1,4 +1,14 @@
-import { enableValidation } from "./modules/validate.js"; 
+import { enableValidation, hideInputError } from "./modules/validate.js"; 
+console.log("enable validation", enableValidation);
+
+const selectors = {
+  formSelector: ".popup__form",
+  inputSelector: ".form__input",
+  submitButtonSelector: ".popup__saveButton",
+  inactiveButtonClass: "popup__saveButton-inactive",
+  inputErrorClass: "form__input_type_error",
+  errorClass: "form__input-error_active"
+}; 
 
 const initialCards = [
   {
@@ -88,7 +98,8 @@ function closePopup(popupElement) {
     formElement.reset();
     const inputList = Array.from(formElement.querySelectorAll(".form__input"));
     inputList.forEach((input) => {
-      hideInputError(formElement, input);
+      hideInputError(selectors, formElement, input);
+      console.log("hideinputError", hideInputError);
     });
     const buttonElement = popupElement.querySelector(".popup__saveButton");
 
@@ -186,11 +197,5 @@ function handleNewCardFormSubmit(evt) {
   closePopup(newCardPopupElement);
 }
 
-enableValidation({
-  formSelector: ".popup__form",
-  inputSelector: ".form__input",
-  submitButtonSelector: ".popup__saveButton",
-  inactiveButtonClass: "popup__saveButton-inactive",
-  inputErrorClass: "form__input_type_error",
-  errorClass: "form__input-error_active"
-}); 
+enableValidation(selectors);
+ 
