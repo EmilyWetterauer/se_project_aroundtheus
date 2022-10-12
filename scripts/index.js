@@ -1,5 +1,4 @@
-import { enableValidation, hideInputError } from "./modules/validate.js"; 
-console.log("enable validation", enableValidation);
+import { enableValidation, resetValidation } from "./modules/validate.js"; 
 
 const selectors = {
   formSelector: ".popup__form",
@@ -92,27 +91,14 @@ function openPopup(popupElement) {
 
 function closePopup(popupElement) {
   popupElement.classList.remove("popup_opened");
-
-  const formElement = popupElement.querySelector(".popup__form");
-  if (formElement !== null) {
-    formElement.reset();
-    const inputList = Array.from(formElement.querySelectorAll(".popup__form-input"));
-    inputList.forEach((input) => {
-      hideInputError(selectors, formElement, input);
-      console.log("hideinputError", hideInputError);
-    });
-    const buttonElement = popupElement.querySelector(".popup__saveButton");
-
-    buttonElement.classList.remove("popup__saveButton-inactive");
-    buttonElement.disabled = false;
-  }
+resetValidation(selectors, popupElement);
+  
 }
 
 //FUNCTION FOREACH INITIAL CARD in the ARRAY
 
-initialCards.forEach(function (card, index, array) {
+initialCards.forEach(function (card) {
   const cardDataElement = getCardElement(card);
-
   cardListElement.append(cardDataElement);
 });
 
@@ -173,7 +159,6 @@ function openProfilePopup() {
   openPopup(profilePopupElement);
 }
 
-//disable submit save button
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileNameElement.textContent = inputNameElement.value;

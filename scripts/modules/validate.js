@@ -20,12 +20,12 @@ const checkInputValidity = (selectors, formElement, inputElement) => {
   }
 };
   
-const hasInvalidInput = (inputList) => {
-  return inputList.some((inputElement) => {
+// const hasInvalidInput = (inputList) => inputList.some((inputElement) => !inputElement.validity.valid)const hasInvalidInput = (inputList) => {
+  const hasInvalidInput = (inputList) => { 
+return inputList.some((inputElement) => {
     return !inputElement.validity.valid;
   });
-};
-  
+}; 
 const toggleButtonState = (selectors, inputList, buttonElement) => {
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add(selectors.inactiveButtonClass);
@@ -39,6 +39,7 @@ const toggleButtonState = (selectors, inputList, buttonElement) => {
 const setEventListeners = (selectors, formElement) => {
   const inputList = Array.from(formElement.querySelectorAll(selectors.inputSelector));
   const buttonElement = formElement.querySelector(selectors.submitButtonSelector);
+  toggleButtonState(selectors, inputList, buttonElement);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", function () {
       checkInputValidity(selectors, formElement, inputElement);
@@ -48,7 +49,7 @@ const setEventListeners = (selectors, formElement) => {
 };
   
 export const enableValidation = (selectors) => {
-  const formList = Array.from(document.querySelectorAll(selectors.formSelector));
+  const formList = [...document.querySelectorAll(selectors.formSelector)];
   formList.forEach((formElement) => {
     formElement.addEventListener("submit", function (evt) {
       evt.preventDefault();
@@ -56,5 +57,19 @@ export const enableValidation = (selectors) => {
     setEventListeners(selectors, formElement);
   });
 };
-  
+
+export const resetValidation = (selectors, popupElement) => {
+const formElement = popupElement.querySelector(selectors.formSelector);
+   if (formElement !== null) {
+    formElement.reset();
+    const inputList = Array.from(formElement.querySelectorAll(".popup__form-input"));
+    inputList.forEach((input) => {
+       hideInputError(selectors, formElement, input);
+      });
+       const buttonElement = popupElement.querySelector(".popup__saveButton");
+       toggleButtonState(selectors, inputList, buttonElement);
+      
+       }
+      
+    }
   

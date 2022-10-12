@@ -12,6 +12,10 @@
   background-color: black;
 }
 
+.card__image:hover {
+  cursor: pointer;
+}
+
 .card__trashCanButtonContainer {
   display: inline-block;
   position: relative;
@@ -26,6 +30,10 @@
   height: 19.3px;
   right: 15px;
   top: 18px;
+}
+
+.card__trashCanButton:hover {
+  cursor: pointer;
 }
 
 .card__description {
