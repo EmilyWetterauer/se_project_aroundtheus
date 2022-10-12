@@ -54,25 +54,18 @@ const popupImageElement = document.querySelector(".popup__image");
 const popupTitleElement = document.querySelector(".popup__imageTitle");
 
 
+function closePopupOnRemoteClick (event) {
+  if (event.target === event.currentTarget) {
+    closePopup(event.currentTarget);
+  }
+};
 
-
-
-//OVERLAY IDENTIFIER AND CLOSER USING A CLICK//
-const closeOverlays = document.querySelectorAll(".popup");
-
-closeOverlays.forEach(function (overlay) {
-  overlay.addEventListener("click", function (event) {
-    if (event.target === event.currentTarget) {
-      closePopup(overlay);
-    }
-  });
-
-  document.addEventListener("keydown", function (event) {
-    if (event.key === "Escape") {
-      closePopup(overlay);
-    }
-  });
-});
+function closePopupOnEscapeButton (event) {
+  if (event.key === "Escape") {
+    const popupElement = document.querySelector(".popup_opened");
+    closePopup(popupElement);
+  };
+};
 
 //UNIVERSAL CLOSE BUTTON--CONST//
 const closeButtons = document.querySelectorAll(".popup__closeBox");
@@ -85,11 +78,17 @@ closeButtons.forEach(function (button) {
     closePopup(popup);
   });
 });
+
 function openPopup(popupElement) {
   popupElement.classList.add("popup_opened");
-}
+  document.addEventListener("keydown", closePopupOnEscapeButton);
+  popupElement.addEventListener("mousedown", closePopupOnRemoteClick);
+};
+
 
 function closePopup(popupElement) {
+  popupElement.removeEventListener("keydown", closePopupOnEscapeButton);
+  popupElement.removeEventListener("mousedown", closePopupOnRemoteClick);
   popupElement.classList.remove("popup_opened");
 resetValidation(selectors, popupElement);
   
@@ -183,4 +182,3 @@ function handleNewCardFormSubmit(evt) {
 }
 
 enableValidation(selectors);
- 
