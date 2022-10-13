@@ -7,7 +7,7 @@
   width: 100vw;
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0s 0.5s, opacity 0.5s linear; 
+  transition: visibility 0s 0.5s, opacity 0.5s linear;
 }
 
 .popup__modalContainer {
@@ -34,7 +34,7 @@
 .popup_opened {
   visibility: visible;
   opacity: 1;
-  transition: visibility 0s, opacity 0.5s linear; 
+  transition: visibility 0s, opacity 0.5s linear;
 }
 
 .popup__title {
@@ -171,7 +171,6 @@
   color: #ff0000;
   font-size: 12px;
   line-height: 15px;
-  
 }
 
 .popup__form-input-error {
@@ -225,8 +224,8 @@
 
 .popup__saveButton-inactive:hover {
   background-color: #fff;
+  cursor: default;
 }
-
 
 .popup__imageContainer {
   width: 433px;
