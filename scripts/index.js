@@ -39,6 +39,7 @@ const initialCards = [
 // DOM ELEMENTS
 const addNewCardButtonElement = document.querySelector(".author__plus-sign");
 const newCardPopupElement = document.querySelector("#newCardPopup");
+const newCardFormElement = document.querySelector("#newCardForm");
 const cardListElement = document.querySelector(".cards__list");
 const pencilButtonElement = document.querySelector(".author__pencil");
 const profilePopupElement = document.querySelector("#profilePopup");
@@ -48,7 +49,7 @@ const profileDescriptionElement = document.querySelector(
 );
 const inputDescriptionElement = document.querySelector(".popup__description");
 const inputNameElement = document.querySelector(".popup__name");
-const editProfileFormElement = document.querySelector(".popup__form");
+const editProfileFormElement = document.querySelector("#profileForm");
 const newCardTitleInputElement = document.querySelector("#popup__newCardTitle");
 const newCardImageInputElement = document.querySelector("#popup__newCardImage");
 const popupImageWrapperElement = document.querySelector("#popupImageWrapper");
@@ -91,11 +92,6 @@ function closePopup(popupElement) {
   popupElement.removeEventListener("keydown", closePopupOnEscapeButton);
   popupElement.removeEventListener("mousedown", closePopupOnRemoteClick);
   popupElement.classList.remove("popup_opened");
-  const formElement = popupElement.querySelector(".popup__form");
-  if (formElement !== null) {
-    formElement.reset();
-    resetValidation(selectors, formElement);
-  }
 }
 
 //FUNCTION --INITIAL CARDS ARRAY
@@ -108,7 +104,7 @@ initialCards.forEach(function (card) {
 // EVENT LISTENERS
 pencilButtonElement.addEventListener("click", openProfilePopup);
 editProfileFormElement.addEventListener("submit", handleProfileFormSubmit);
-newCardPopupElement.addEventListener("submit", handleNewCardFormSubmit);
+newCardFormElement.addEventListener("submit", handleNewCardFormSubmit);
 addNewCardButtonElement.addEventListener("click", function () {
   openPopup(newCardPopupElement);
 });
@@ -158,6 +154,7 @@ function getCardElement(data) {
 function openProfilePopup() {
   inputNameElement.value = profileNameElement.textContent;
   inputDescriptionElement.value = profileDescriptionElement.textContent;
+  resetValidation(selectors, editProfileFormElement);
   openPopup(profilePopupElement);
 }
 
@@ -181,6 +178,8 @@ function handleNewCardFormSubmit(evt) {
   cardListElement.prepend(cardDataElement);
 
   closePopup(newCardPopupElement);
+  newCardFormElement.reset();
+  resetValidation(selectors, newCardFormElement);
 }
 
 enableValidation(selectors);
