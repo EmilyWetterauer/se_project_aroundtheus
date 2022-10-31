@@ -1,4 +1,4 @@
-import { enableValidation, resetValidation } from "./modules/validate.js";
+import FormValidator from "./modules/FormValidator.js";
 
 const selectors = {
   formSelector: ".popup__form",
@@ -55,6 +55,12 @@ const newCardImageInputElement = document.querySelector("#popup__newCardImage");
 const popupImageWrapperElement = document.querySelector("#popupImageWrapper");
 const popupImageElement = document.querySelector(".popup__image");
 const popupTitleElement = document.querySelector(".popup__imageTitle");
+
+const newCardFormValidator = new FormValidator(selectors, newCardFormElement);
+const editProfileFormValidator = new FormValidator(
+  selectors,
+  editProfileFormElement
+);
 
 function closePopupOnRemoteClick(event) {
   if (event.target === event.currentTarget) {
@@ -154,7 +160,7 @@ function getCardElement(data) {
 function openProfilePopup() {
   inputNameElement.value = profileNameElement.textContent;
   inputDescriptionElement.value = profileDescriptionElement.textContent;
-  resetValidation(selectors, editProfileFormElement);
+  editProfileFormValidator.resetValidation();
   openPopup(profilePopupElement);
 }
 
@@ -179,7 +185,8 @@ function handleNewCardFormSubmit(evt) {
 
   closePopup(newCardPopupElement);
   newCardFormElement.reset();
-  resetValidation(selectors, newCardFormElement);
+  newCardFormValidator.resetValidation();
 }
 
-enableValidation(selectors);
+newCardFormValidator.enableValidation();
+editProfileFormValidator.enableValidation();
