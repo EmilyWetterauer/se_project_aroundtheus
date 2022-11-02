@@ -47,11 +47,8 @@ class FormValidator {
     this._inputList = [...this._form.querySelectorAll(this._inputSelector)];
     this._buttonElement = this._form.querySelector(this._submitButtonSelector);
     this._toggleButtonState();
-    console.log("this inside setEventListeners", this);
     this._inputList.forEach((inputElement) => {
-      console.log("this inside forEach", this);
       inputElement.addEventListener("input", () => {
-        console.log("this inside anonymous function", this);
         this._checkInputValidity(inputElement);
         this._toggleButtonState();
       });
