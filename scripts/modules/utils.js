@@ -1,4 +1,4 @@
-import Card from "./card.js";
+import Card from "./Card.js";
 
 function closePopup(popupElement) {
   popupElement.removeEventListener("keydown", closePopupOnEscapeButton);
