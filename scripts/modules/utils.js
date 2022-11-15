@@ -27,6 +27,7 @@ import Card from "./Card.js";
 
 const cardSelectors = {
   cardTemplateSelector: "#cardTemplate",
+  cardElementListSelector: ".cards__list",
   cardElementSelector: ".card",
   cardNameSelector: ".card__name",
   cardImageSelector: ".card__image",

@@ -8,6 +8,7 @@ import {
   // handleNewCardFormSubmit,
   cardSelectors,
 } from "./modules/utils.js";
+import Section from "./modules/Section.js";
 
 const selectors = {
   formSelector: ".popup__form",
@@ -44,6 +45,13 @@ const initialCards = [
     link: "https://code.s3.yandex.net/web-code/lago.jpg",
   },
 ];
+
+const cardList = new Section(
+  { items: initialCards, renderer: createCard },
+  cardSelectors.cardElementListSelector
+);
+
+cardList.renderItems();
 
 // DOM ELEMENTS
 const addNewCardButtonElement = document.querySelector(".author__plus-sign");
@@ -87,12 +95,6 @@ closeButtons.forEach(function (button) {
 });
 
 //FUNCTION --INITIAL CARDS ARRAY
-
-initialCards.forEach(function (cardData) {
-  const cardElement = createCard(cardData);
-
-  cardListElement.append(cardElement);
-});
 
 //$$$ MOVED FROM UTILS$$$///
 function closePopup(popupElement) {
