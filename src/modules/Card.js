@@ -67,7 +67,6 @@ class Card {
 
     this._populateCard();
     this._addEventListeners();
-
     return this._cardElement;
   }
 }

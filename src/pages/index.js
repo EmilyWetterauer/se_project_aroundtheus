@@ -2,80 +2,98 @@ import "./index.css";
 //////*****ALL-IMPORTS*****//////
 import FormValidator from "../modules/FormValidator.js";
 import Card from "../modules/Card.js";
-import { cardSelectors } from "../modules/utils.js";
+import { cardSelectors } from "../utils/utils.js";
 import Section from "../modules/Section.js";
 import Popup from "../modules/Popup.js";
 import PopupWithForm from "../modules/PopupWithForm.js";
 import PopupWithImage from "../modules/PopupWithImage.js";
 import UserInfo from "../modules/UserInfo.js";
+import {
+  selectors,
+  initialCards,
+  inputNameElement,
+  inputDescriptionElement,
+  addNewCardButtonElement,
+  newCardPopupElement,
+  newCardFormElement,
+  cardListElement,
+  pencilButtonElement,
+  editProfileFormElement,
+  profileNameElement,
+  profileDescriptionElement,
+  profilePopupElement,
+  newCardTitleInputElement,
+  newCardImageInputElement,
+  closeButtons,
+} from "../utils/constants.js";
 
 //////*****ALL-CONSTANTS*****//////
-const selectors = {
-  formSelector: ".popup__form",
-  inputSelector: ".popup__form-input",
-  submitButtonSelector: ".popup__saveButton",
-  inactiveButtonClass: "popup__saveButton-inactive",
-  inputErrorClass: "popup__form-input-type-error",
-  errorClass: "popup__form-input-error-active",
-  profilePopupSelector: "#profilePopup",
-  newCardPopupSelector: "#newCardPopup",
-  popupImageWrapperSelector: "#popupImageWrapper",
-  authorNameSelector: ".author__name",
-  authorDescriptionSelector: ".author__description",
-};
+// const selectors = {
+//   formSelector: ".popup__form",
+//   inputSelector: ".popup__form-input",
+//   submitButtonSelector: ".popup__saveButton",
+//   inactiveButtonClass: "popup__saveButton-inactive",
+//   inputErrorClass: "popup__form-input-type-error",
+//   errorClass: "popup__form-input-error-active",
+//   profilePopupSelector: "#profilePopup",
+//   newCardPopupSelector: "#newCardPopup",
+//   popupImageWrapperSelector: "#popupImageWrapper",
+//   authorNameSelector: ".author__name",
+//   authorDescriptionSelector: ".author__description",
+// };
 
-const initialCards = [
-  {
-    name: "Yosemite Valley",
-    link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
-  },
-  {
-    name: "Lake Louise",
-    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg",
-  },
-  {
-    name: "Bald Mountains",
-    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://code.s3.yandex.net/web-code/latemar.jpg",
-  },
-  {
-    name: "Vanoise National Park",
-    link: "https://code.s3.yandex.net/web-code/vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://code.s3.yandex.net/web-code/lago.jpg",
-  },
-];
+// const initialCards = [
+//   {
+//     name: "Yosemite Valley",
+//     link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
+//   },
+//   {
+//     name: "Lake Louise",
+//     link: "https://code.s3.yandex.net/web-code/lake-louise.jpg",
+//   },
+//   {
+//     name: "Bald Mountains",
+//     link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
+//   },
+//   {
+//     name: "Latemar",
+//     link: "https://code.s3.yandex.net/web-code/latemar.jpg",
+//   },
+//   {
+//     name: "Vanoise National Park",
+//     link: "https://code.s3.yandex.net/web-code/vanoise.jpg",
+//   },
+//   {
+//     name: "Lago di Braies",
+//     link: "https://code.s3.yandex.net/web-code/lago.jpg",
+//   },
+// ];
 
 //CONST-DOM-ELEMENTS//
-const inputNameElement = document.querySelector(".popup__name");
-const inputDescriptionElement = document.querySelector(".popup__description");
+// const inputNameElement = document.querySelector(".popup__name");
+// const inputDescriptionElement = document.querySelector(".popup__description");
 
-const addNewCardButtonElement = document.querySelector(".author__plus-sign");
-const newCardPopupElement = document.querySelector("#newCardPopup");
-const newCardFormElement = document.querySelector("#newCardForm");
-const cardListElement = document.querySelector(".cards__list");
-const pencilButtonElement = document.querySelector(".author__pencil");
-const editProfileFormElement = document.querySelector("#profileForm");
-const profileNameElement = document.querySelector(".author__name");
-const profileDescriptionElement = document.querySelector(
-  ".author__description"
-);
-const profilePopupElement = document.querySelector("#profilePopup");
-const newCardTitleInputElement = document.querySelector("#popup__newCardTitle");
-const newCardImageInputElement = document.querySelector("#popup__newCardImage");
-//UNIVERSAL CLOSE BUTTON--CONST//
-const closeButtons = document.querySelectorAll(".popup__closeBox");
+// const addNewCardButtonElement = document.querySelector(".author__plus-sign");
+// const newCardPopupElement = document.querySelector("#newCardPopup");
+// const newCardFormElement = document.querySelector("#newCardForm");
+// const cardListElement = document.querySelector(".cards__list");
+// const pencilButtonElement = document.querySelector(".author__pencil");
+// const editProfileFormElement = document.querySelector("#profileForm");
+// const profileNameElement = document.querySelector(".author__name");
+// const profileDescriptionElement = document.querySelector(
+//   ".author__description"
+// );
+// const profilePopupElement = document.querySelector("#profilePopup");
+// const newCardTitleInputElement = document.querySelector("#popup__newCardTitle");
+// const newCardImageInputElement = document.querySelector("#popup__newCardImage");
+// //UNIVERSAL CLOSE BUTTON--CONST//
+// const closeButtons = document.querySelectorAll(".popup__closeBox");
 
 //CONST-INSTANCES//
 const popupWithImageInstance = new PopupWithImage(
   selectors.popupImageWrapperSelector
 );
-popupWithImageInstance.setEventListeners();
+// popupWithImageInstance.setEventListeners();
 
 // const userInfo = new UserInfo(
 //   selectors.authorNameSelector,
@@ -98,13 +116,13 @@ const profileFormInstance = new PopupWithForm(
   selectors.profilePopupSelector,
   handleProfileFormSubmit
 );
-profileFormInstance.setEventListeners();
+// profileFormInstance.setEventListeners();
 
 const newCardFormInstance = new PopupWithForm(
   selectors.newCardPopupSelector,
   handleNewCardFormSubmit
 );
-newCardFormInstance.setEventListeners();
+// newCardFormInstance.setEventListeners();
 
 //////*****EVENT-LISTENERS*****//////
 pencilButtonElement.addEventListener("click", function () {
@@ -159,7 +177,8 @@ function createCard(newCardObject) {
   return cardElement;
 }
 
-function handleNewCardFormSubmit(evt, newCardFormValidator) {
+function handleNewCardFormSubmit(evt) {
+  debugger;
   evt.preventDefault();
 
   const newCardObject = {
@@ -168,12 +187,11 @@ function handleNewCardFormSubmit(evt, newCardFormValidator) {
   };
 
   const cardElement = createCard(newCardObject);
-  cardListElement.prepend(cardElement);
+  cardList.addItem(cardElement);
+  // cardListElement.prepend(cardElement);
 
   newCardFormInstance.close(newCardPopupElement);
 
-  /////////////////what is this closePopup connected to??
-  closePopup(newCardPopupElement);
   newCardFormElement.reset();
   newCardFormValidator.resetValidation();
 }

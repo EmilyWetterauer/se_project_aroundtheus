@@ -14,7 +14,7 @@ class Section {
   }
 
   addItem(cardElement) {
-    this._cssSelector.append(cardElement);
+    this._cssSelector.prepend(cardElement);
   }
 }
 

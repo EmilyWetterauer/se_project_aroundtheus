@@ -4,6 +4,9 @@ class Popup {
   constructor(popupSelector) {
     this.popupElement = document.querySelector(popupSelector);
     this.closeButton = this.popupElement.querySelector(".popup__closeBox");
+    this._handleEscClose = this._handleEscClose.bind(this);
+    this._closePopupOnRemoteClick = this._closePopupOnRemoteClick.bind(this);
+    this.close = this.close.bind(this);
   }
   open() {
     this.setEventListeners();
@@ -32,12 +35,9 @@ class Popup {
   }
 
   setEventListeners() {
-    document.addEventListener("keydown", this._handleEscClose.bind(this));
-    this.closeButton.addEventListener("click", this.close.bind(this));
-    this.popupElement.addEventListener(
-      "click",
-      this._closePopupOnRemoteClick.bind(this)
-    );
+    document.addEventListener("keydown", this._handleEscClose);
+    this.closeButton.addEventListener("click", this.close);
+    this.popupElement.addEventListener("click", this._closePopupOnRemoteClick);
   }
 }
 
