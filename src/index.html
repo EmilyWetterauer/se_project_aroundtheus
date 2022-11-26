@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="" />
     <title>Around the US</title>
-    <link rel="stylesheet" href="./pages/index.css" />
+    <!-- <link rel="stylesheet" href="./pages/index.css" /> -->
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
   </head>
   <body>
     <div class="page">
       <header class="header">
         <img
-          src="images/around-the-us.svg"
+          src="<%=require('./images/around-the-us.svg')%>"
           alt="Around the US icon"
           class="header__image"
         />
@@ -21,7 +21,7 @@
       <main>
         <section class="author">
           <img
-            src="images/jacques-cousteau.jpg"
+            src="<%=require('./images/jacques-cousteau.jpg')%>"
             alt="Picture of Jacques-Cousteau"
             class="author__image"
           />
@@ -46,7 +46,7 @@
           <button class="popup__xButton" id="profileXButton">
             <img
               class="popup__closeBox"
-              src="images/close-icon.png"
+              src="<%=require('./images/close-icon.png')%>"
               alt="close button"
             />
           </button>
@@ -90,7 +90,7 @@
           <button class="popup__xButton" id="newCardXButton">
             <img
               class="popup__closeBox"
-              src="images/close-icon.png"
+              src="<%=require('./images/close-icon.png')%>"
               alt="close button"
             />
           </button>
@@ -111,7 +111,7 @@
             <input
               class="popup__description popup__form-input"
               type="url"
-              name="description"
+              name="link"
               id="popup__newCardImage"
               placeholder="Image link"
               required
@@ -136,7 +136,7 @@
           <button class="popup__xButton" id="imageOpenedXButton">
             <img
               class="popup__closeBox"
-              src="images/close-icon.png"
+              src="<%=require('./images/close-icon.png')%>"
               alt="close button"
             />
           </button>
@@ -156,8 +156,8 @@
         </div>
       </li>
     </template>
-    <script type="module" src="./scripts/modules/Card.js"></script>
+    <!-- <script type="module" src="./scripts/modules/Card.js"></script>
     <script type="module" src="./scripts/modules/FormValidator.js"></script>
-    <script type="module" src="./scripts/index.js"></script>
+    <script type="module" src="./scripts/index.js"></script> -->
   </body>
 </html>

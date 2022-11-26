@@ -44,21 +44,6 @@ class Card {
     this._cardElement.remove();
   }
 
-  _handlePopup() {
-    this._popupImageElement = document.querySelector(
-      this._cardPopupImageSelector
-    );
-    this._popupImageElement.src = this._src;
-    this._popupImageElement.alt = this._alt;
-    this._popupTitleElement = document.querySelector(
-      this._cardPopupTitleSelector
-    );
-    this._popupTitleElement.textContent = this._textContent;
-    this._openPopup(
-      document.querySelector(this._cardPopupImageWrapperSelector)
-    );
-  }
-
   _addEventListeners() {
     this._cardElement
       .querySelector(this._cardLikeButtonSelector)
@@ -73,19 +58,16 @@ class Card {
     this._cardElement
       .querySelector(this._cardImageSelector)
       .addEventListener("click", () => {
-        this._handlePopup();
+        this._openPopup(this._src, this._alt);
       });
   }
 
   generateCard() {
-    // Store the markup in the private field _element
-    // so that other elements can access it
     this._cardElement = this._getTemplate();
 
     this._populateCard();
     this._addEventListeners();
 
-    // Return the element
     return this._cardElement;
   }
 }
