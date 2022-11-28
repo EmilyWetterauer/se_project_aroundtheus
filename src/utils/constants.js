@@ -55,7 +55,6 @@ const profileDescriptionElement = document.querySelector(
 const profilePopupElement = document.querySelector("#profilePopup");
 const newCardTitleInputElement = document.querySelector("#popup__newCardTitle");
 const newCardImageInputElement = document.querySelector("#popup__newCardImage");
-//UNIVERSAL CLOSE BUTTON--CONST//
 const closeButtons = document.querySelectorAll(".popup__closeBox");
 
 export {

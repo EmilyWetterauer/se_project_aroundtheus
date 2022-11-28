@@ -13,6 +13,7 @@ class PopupWithForm extends Popup {
     const inputObject = {};
     inputFields.forEach(function (currentItem) {
       inputObject[currentItem.name] = currentItem.value;
+      console.log("what is inside of input object", inputObject);
     });
     return inputObject;
   }
@@ -25,7 +26,6 @@ class PopupWithForm extends Popup {
   close() {
     super.close();
     this.popupElement.querySelector("form").reset();
-    debugger;
     this.popupElement.removeEventListener("submit", this.popupWithFormSubmit);
   }
 }

@@ -2,7 +2,7 @@ class Section {
   constructor({ items, renderer }, cssSelector) {
     this._items = items;
     this._renderer = renderer;
-    this._cssSelector = document.querySelector(cssSelector);
+    this._container = document.querySelector(cssSelector);
   }
 
   renderItems() {
@@ -14,7 +14,7 @@ class Section {
   }
 
   addItem(cardElement) {
-    this._cssSelector.prepend(cardElement);
+    this._container.prepend(cardElement);
   }
 }
 
