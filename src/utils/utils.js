@@ -1,4 +1,4 @@
-import Card from "../modules/Card.js";
+import Card from "../components/Card.js";
 
 const cardSelectors = {
   cardTemplateSelector: "#cardTemplate",

@@ -1,12 +1,12 @@
 import "./index.css";
-import FormValidator from "../modules/FormValidator.js";
-import Card from "../modules/Card.js";
+import FormValidator from "../components/FormValidator.js";
+import Card from "../components/Card.js";
 import { cardSelectors } from "../utils/utils.js";
-import Section from "../modules/Section.js";
-import Popup from "../modules/Popup.js";
-import PopupWithForm from "../modules/PopupWithForm.js";
-import PopupWithImage from "../modules/PopupWithImage.js";
-import UserInfo from "../modules/UserInfo.js";
+import Section from "../components/Section.js";
+import Popup from "../components/Popup.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import UserInfo from "../components/UserInfo.js";
 import {
   selectors,
   initialCards,
@@ -67,8 +67,7 @@ function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   editProfileFormValidator.resetValidation();
 
-  console.log("profile form instance...", profileFormInstance._getInputValues);
-  userInfo.setUserInfo(profileFormInstance._getInputValues());
+  userInfo.setUserInfo(profileFormInstance.getInputValues());
   profileFormInstance.close(profilePopupElement);
 }
 
@@ -93,7 +92,7 @@ function createCard(newCardObject) {
 function handleNewCardFormSubmit(evt) {
   evt.preventDefault();
 
-  const cardElement = createCard(newCardFormInstance._getInputValues());
+  const cardElement = createCard(newCardFormInstance.getInputValues());
   cardList.addItem(cardElement);
 
   newCardFormInstance.close(newCardPopupElement);
