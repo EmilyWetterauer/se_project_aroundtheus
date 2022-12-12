@@ -179,7 +179,6 @@ function handleCardClick(cardImageSource, cardAltSource) {
 }
 
 function openPopupConfirmDeleteCard(card) {
-  console.log("card", card);
   confirmDeleteCardInstance.open(card);
 }
 
@@ -188,7 +187,6 @@ function addLikes(card) {
     card._likes = res.likes;
     card.setLikes();
   });
-  console.log("addLikes");
 }
 
 function removeLikes(card) {
