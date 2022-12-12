@@ -38,10 +38,35 @@
 
 /* .AUTHOR__IMAGE */
 
+.author__image-wrapper {
+  display: flex;
+  height: 120px;
+  width: 120px;
+  margin-right: 29.5px;
+}
+
 .author__image {
   border-radius: 50%;
   height: 120.5px;
-  margin-right: 29.5px;
+}
+
+.author__image-overlay {
+  opacity: 0;
+  z-index: 2;
+  height: 120px;
+  width: 120px;
+  position: absolute;
+}
+.author__image-overlay-img {
+  height: 26px;
+  width: 26px;
+  position: relative;
+  top: 50px;
+  left: 50px;
+}
+.author__image-overlay:hover {
+  opacity: 1;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 580px) {

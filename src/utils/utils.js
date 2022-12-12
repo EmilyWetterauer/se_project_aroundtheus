@@ -8,6 +8,7 @@ const cardSelectors = {
   cardImageSelector: ".card__image",
   cardLikeButtonSelector: ".card__like-button",
   cardLikeButtonClickedSelector: "card__like-button-clicked",
+  cardLikeButtonAmountSelector: ".card__like-buttonAmount",
   cardTrashCanButtonSelector: ".card__trashCanButton",
   cardPopupImageWrapperSelector: "#popupImageWrapper",
   cardPopupImageSelector: ".popup__image",

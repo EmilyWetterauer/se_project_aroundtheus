@@ -20,14 +20,23 @@
       </header>
       <main>
         <section class="author">
-          <img
-            src="<%=require('./images/jacques-cousteau.jpg')%>"
-            alt="Picture of Jacques-Cousteau"
-            class="author__image"
-          />
+          <div class="author__image-wrapper">
+            <img
+              src="<%=require('./images/jacques-cousteau.jpg')%>"
+              alt="Picture of Jacques-Cousteau"
+              class="author__image"
+            />
+            <div class="author__image-overlay">
+              <img
+                class="author__image-overlay-img"
+                src="<%=require('./images/pencil.svg')%>"
+                alt="pencil edit button"
+              />
+            </div>
+          </div>
           <div class="author__info">
-            <h1 class="author__name block">Jacques Cousteau</h1>
-            <p class="author__description block">Explorer</p>
+            <h1 class="author__name block"></h1>
+            <p class="author__description block"></p>
             <button type="button" class="author__pencil"></button>
           </div>
           <button type="button" class="author__plus-sign"></button>
@@ -39,6 +48,45 @@
       <footer class="footer">
         <p class="footer__copyright">&copy;2022 Around the U.S.</p>
       </footer>
+      <!-- Start of  Overlay Edit AuthorImage popup window -->
+      <div class="popup" id="authorImage">
+        <div class="popup__modalContainer popup__modalContainer-authorImage">
+          <h2 class="popup__title">Change profile picture</h2>
+          <button class="popup__xButton" id="authorImageXButton">
+            <img
+              class="popup__closeBox"
+              src="<%=require('./images/close-icon.png')%>"
+              alt="close button"
+            />
+          </button>
+          <form
+            name="profile-form"
+            class="popup__form"
+            id="authorImageForm"
+            novalidate
+          >
+            <input
+              class="popup__description popup__form-input"
+              type="url"
+              name="authorImageLink"
+              id="popup__authorImage"
+              placeholder="Author Image URL"
+              required
+            />
+            <span
+              class="popup__form-input-error popup__authorImage-error"
+            ></span>
+            <button
+              class="popup__saveButton"
+              type="submit"
+              id="popup__authorImageSaveButton"
+            >
+              Save
+            </button>
+          </form>
+        </div>
+      </div>
+      <!-- End of Overlay Edit AuthorImage popup window -->
       <!-- Start of  Overlay Edit Profile popup window -->
       <div class="popup" id="profilePopup">
         <div class="popup__modalContainer">
@@ -78,11 +126,39 @@
             <span
               class="popup__form-input-error popup__description-error"
             ></span>
-            <button class="popup__saveButton" type="submit">Save</button>
+            <button
+              class="popup__saveButton"
+              type="submit"
+              id="popup__editProfileSaveButton"
+            >
+              Save
+            </button>
           </form>
         </div>
       </div>
       <!-- End of Overlay Edit Profile popup window -->
+      <!-- Start of EDIT PROFILE CONFIRM CLOSE popup window -->
+      <div class="popup" id="confirmCardClosePopup">
+        <div class="popup__modalContainer popup__confirmCloseButtonContainer">
+          <h2 class="popup__title">Are you sure?</h2>
+          <button class="popup__xButton" id="profileXButton">
+            <img
+              class="popup__closeBox"
+              src="<%=require('./images/close-icon.png')%>"
+              alt="close button"
+            />
+          </button>
+          <form class="popupConfirmCloseWrapper">
+            <button
+              class="popup__saveButton popup__saveButtonConfirmClose"
+              type="submit"
+            >
+              Yes
+            </button>
+          </form>
+        </div>
+      </div>
+      <!-- END of EDIT PROFILE CONFIRM CLOSE popup window -->
       <!-- Start of  Overlay Add New Card popup window -->
       <div class="popup" id="newCardPopup">
         <div class="popup__modalContainer">
@@ -119,7 +195,13 @@
             <span
               class="popup__form-input-error popup__newCardImage-error"
             ></span>
-            <button class="popup__saveButton" type="submit">Create</button>
+            <button
+              class="popup__saveButton"
+              type="submit"
+              id="popup__newCardSaveButton"
+            >
+              Create
+            </button>
           </form>
         </div>
       </div>
@@ -152,12 +234,12 @@
         </div>
         <div class="card__description">
           <h2 class="card__name"></h2>
-          <button type="button" class="card__like-button"></button>
+          <div class="card__like-buttonContainer">
+            <button type="button" class="card__like-button"></button>
+            <div class="card__like-buttonAmount"></div>
+          </div>
         </div>
       </li>
     </template>
-    <!-- <script type="module" src="./scripts/modules/Card.js"></script>
-    <script type="module" src="./scripts/modules/FormValidator.js"></script>
-    <script type="module" src="./scripts/index.js"></script> -->
   </body>
 </html>
