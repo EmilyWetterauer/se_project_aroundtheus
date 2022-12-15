@@ -35,7 +35,7 @@ import {
 
 import Api from "../components/Api.js";
 import { data } from "autoprefixer";
-import PopupWithSubmitButton from "../components/popupWithSubmitButton";
+import PopupWithConfirmation from "../components/PopupWithConfirmation";
 
 const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/group-12",
@@ -77,9 +77,8 @@ const profileFormInstance = new PopupWithForm(
   handleProfileFormSubmit
 );
 
-const confirmDeleteCardInstance = new PopupWithSubmitButton(
-  selectors.confirmCardClosePopupSelector,
-  handleConfirmDeleteSubmit
+const confirmDeleteCardInstance = new PopupWithConfirmation(
+  selectors.confirmCardClosePopupSelector
 );
 
 const newCardFormInstance = new PopupWithForm(
@@ -188,7 +187,18 @@ function handleCardImageClick(cardImageSource, cardAltSource) {
 }
 
 function handleDeleteCard(card) {
-  confirmDeleteCardInstance.open(card);
+  confirmDeleteCardInstance.open(() => {
+    api
+      .removeCard(card._cardId)
+      .then((data) => {
+        card._cardElement.remove(this._cardId);
+
+        confirmDeleteCardInstance.close();
+      })
+      .catch((err) => {
+        console.log("err", err);
+      });
+  });
 }
 
 function addLikes(card) {
@@ -215,19 +225,6 @@ function createCard(newCardObject) {
   );
   const cardElement = card.generateCard();
   return cardElement;
-}
-
-function handleConfirmDeleteSubmit(card) {
-  api
-    .removeCard(card._cardId)
-    .then((data) => {
-      card._cardElement.remove(this._cardId);
-
-      confirmDeleteCardInstance.close();
-    })
-    .catch((err) => {
-      console.log("err", err);
-    });
 }
 
 function handleNewCardFormSubmit(evt) {

@@ -1,6 +1,6 @@
-import Popup from "./Popup.js";
+import PopupWithConfirmation from "./PopupWithConfirmation.js";
 
-class PopupWithForm extends Popup {
+class PopupWithForm extends PopupWithConfirmation {
   constructor(popupSelector, popupWithFormSubmit) {
     super(popupSelector);
     this.popupWithFormSubmit = popupWithFormSubmit.bind(this);
