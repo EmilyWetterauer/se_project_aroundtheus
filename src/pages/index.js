@@ -37,11 +37,9 @@ import Api from "../components/Api.js";
 import { data } from "autoprefixer";
 import PopupWithSubmitButton from "../components/popupWithSubmitButton";
 
-//MY OWNER ID ON SERVER FOR CARDS//
-//"786ca0d426e82fd2313561d9"
 const api = new Api({
-  groupIdFormat: "https://around.nomoreparties.co/v1/group-12",
-  tokenFormat: "858fdc35-1a69-4429-9930-7fbd511db204",
+  baseUrl: "https://around.nomoreparties.co/v1/group-12",
+  token: "858fdc35-1a69-4429-9930-7fbd511db204",
 });
 
 const popupWithImageInstance = new PopupWithImage(
@@ -53,11 +51,16 @@ const cardList = new Section(
   cardSelectors.cardElementListSelector
 );
 
-api.getCardList().then((cards) => {
-  cardList.items = cards;
+api
+  .getCardList()
+  .then((cards) => {
+    cardList.items = cards;
 
-  cardList.renderItems();
-});
+    cardList.renderItems();
+  })
+  .catch((err) => {
+    console.log("err", err);
+  });
 
 const newCardFormValidator = new FormValidator(selectors, newCardFormElement);
 const editProfileFormValidator = new FormValidator(
@@ -99,10 +102,12 @@ pencilButtonElement.addEventListener("click", function () {
 addNewCardButtonElement.addEventListener("click", function () {
   newCardFormInstance.open(newCardPopupElement);
 });
-function openPopup(popupElement) {
-  popupElement.classList.add("popup_opened");
-  popupElement.addEventListener("mousedown", closePopupOnRemoteClick);
-}
+
+//needs to be removed should happen in popup class
+// function openPopup(popupElement) {
+//   popupElement.classList.add("popup_opened");
+//   popupElement.addEventListener("mousedown", closePopupOnRemoteClick);
+// }
 
 const userInfo = new UserInfo(
   selectors.authorNameSelector,
@@ -115,6 +120,8 @@ api.getUserInfo().then((userData) => {
     name: userData.name,
     description: userData.about,
   });
+  userInfo.setAvatar(userData.avatar);
+  userInfo.setUserId(userData._id);
 });
 
 function handleProfileFormSubmit(evt) {
@@ -131,6 +138,8 @@ function handleProfileFormSubmit(evt) {
         name: userData.name,
         description: userData.about,
       });
+      userInfo.setAvatar(userData.avatar);
+      userInfo.setUserId(userData._id);
       editProfileFormValidator.resetValidation();
       profileFormInstance.close(profilePopupElement);
     })
@@ -174,25 +183,23 @@ function openProfilePopup(editProfileFormValidator) {
   profileFormInstance.open(profilePopupElement);
 }
 
-function handleCardClick(cardImageSource, cardAltSource) {
+function handleCardImageClick(cardImageSource, cardAltSource) {
   popupWithImageInstance.open(cardImageSource, cardAltSource);
 }
 
-function openPopupConfirmDeleteCard(card) {
+function handleDeleteCard(card) {
   confirmDeleteCardInstance.open(card);
 }
 
 function addLikes(card) {
   api.addLikes(card._cardId).then((res) => {
-    card._likes = res.likes;
-    card.setLikes();
+    card.setLikes(res.likes);
   });
 }
 
 function removeLikes(card) {
   api.removeLikes(card._cardId).then((res) => {
-    card._likes = res.likes;
-    card.setLikes();
+    card.setLikes(res.likes);
   });
 }
 
@@ -200,10 +207,11 @@ function createCard(newCardObject) {
   const card = new Card(
     newCardObject,
     cardSelectors,
-    handleCardClick,
-    openPopupConfirmDeleteCard,
+    handleCardImageClick,
+    handleDeleteCard,
     addLikes,
-    removeLikes
+    removeLikes,
+    userInfo.userId
   );
   const cardElement = card.generateCard();
   return cardElement;
@@ -216,7 +224,6 @@ function handleConfirmDeleteSubmit(card) {
       card._cardElement.remove(this._cardId);
 
       confirmDeleteCardInstance.close();
-      console.log("data", data);
     })
     .catch((err) => {
       console.log("err", err);

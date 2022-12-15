@@ -14,14 +14,22 @@ class UserInfo {
       userName: this.nameElement.textContent,
       userDescription: this.descriptionElement.textContent,
       userAuthorImage: this._authorImageElement.src,
+      userId: this.userId,
     };
     return userInfo;
   }
 
-  setUserInfo({ name, description, avatar }) {
-    if (name) this.nameElement.textContent = name;
-    if (description) this.descriptionElement.textContent = description;
-    if (avatar) this._authorImageElement.src = avatar;
+  setUserInfo({ name, description }) {
+    this.nameElement.textContent = name;
+    this.descriptionElement.textContent = description;
+  }
+
+  setAvatar(avatar) {
+    this._authorImageElement.src = avatar;
+  }
+
+  setUserId(userId) {
+    this.userId = userId;
   }
 }
 

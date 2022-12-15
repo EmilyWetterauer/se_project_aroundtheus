@@ -1,143 +1,109 @@
 class Api {
-  constructor({ groupIdFormat, tokenFormat }) {
-    this._groupIdFormat = groupIdFormat;
-    this._tokenFormat = tokenFormat;
+  constructor({ baseUrl, token }) {
+    this._baseUrl = baseUrl;
+    this._token = token;
   }
 
+  _processResponse = (res) => {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Error: ${res.status}`);
+  };
+
   getCardList() {
-    return fetch(`${this._groupIdFormat}/cards`, {
+    return fetch(`${this._baseUrl}/cards`, {
       headers: {
-        authorization: this._tokenFormat,
+        authorization: this._token,
       },
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      console.log("ressssss", res);
-      // if the server returns an error, reject the promise
-      return Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this._processResponse);
     // .catch((err) => {
-    //     console.log(err); // log the error to the console
+    //     console.log(err);
     //   });
   }
 
   getUserInfo() {
-    return fetch(`${this._groupIdFormat}/users/me`, {
+    return fetch(`${this._baseUrl}/users/me`, {
       headers: {
-        authorization: this._tokenFormat,
+        authorization: this._token,
         "Content-Type": "application/json",
       },
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      // if the server returns an error, reject the promise
-      return Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this._processResponse);
     // .catch((err) => {
-    //     console.log(err); // log the error to the console
+    //     console.log(err);
     //   });
   }
 
-  async setServerUserInfo({ name, about }) {
-    return fetch(`${this._groupIdFormat}/users/me`, {
+  setServerUserInfo({ name, about }) {
+    return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: {
-        authorization: this._tokenFormat,
+        authorization: this._token,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         name,
         about,
       }),
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      // if the server returns an error, reject the promise
-      return Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this._processResponse);
   }
 
   addCard({ name, link }) {
-    return fetch(`${this._groupIdFormat}/cards`, {
+    return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: {
-        authorization: this._tokenFormat,
+        authorization: this._token,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         name,
         link,
       }),
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-    });
+    }).then(this._processResponse);
   }
 
   removeCard(_id) {
-    // console.log("_id", "638d2c27d058f41a9cea8f05");
-    return fetch(`${this._groupIdFormat}/cards/${_id}`, {
+    return fetch(`${this._baseUrl}/cards/${_id}`, {
       method: "DELETE",
       headers: {
-        authorization: this._tokenFormat,
+        authorization: this._token,
         "Content-Type": "application/json",
       },
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-    });
+    }).then(this._processResponse);
   }
 
   addLikes(_id) {
     console.log("_id", _id);
-    return fetch(`${this._groupIdFormat}/cards/likes/${_id}`, {
+    return fetch(`${this._baseUrl}/cards/likes/${_id}`, {
       method: "PUT",
       headers: {
-        authorization: this._tokenFormat,
+        authorization: this._token,
         "Content-Type": "application/json",
       },
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-    });
+    }).then(this._processResponse);
   }
 
   removeLikes(_id) {
-    // console.log("_id", "638d2c27d058f41a9cea8f05");
-    return fetch(`${this._groupIdFormat}/cards/likes/${_id}`, {
+    return fetch(`${this._baseUrl}/cards/likes/${_id}`, {
       method: "DELETE",
       headers: {
-        authorization: this._tokenFormat,
+        authorization: this._token,
         "Content-Type": "application/json",
       },
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-    });
+    }).then(this._processResponse);
   }
 
   addAuthorImage({ avatar }) {
-    return fetch(`${this._groupIdFormat}/users/me/avatar`, {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: {
-        authorization: this._tokenFormat,
+        authorization: this._token,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         avatar,
       }),
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-    });
+    }).then(this._processResponse);
   }
 }
 
