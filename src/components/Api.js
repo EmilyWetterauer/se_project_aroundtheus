@@ -17,9 +17,6 @@ class Api {
         authorization: this._token,
       },
     }).then(this._processResponse);
-    // .catch((err) => {
-    //     console.log(err);
-    //   });
   }
 
   getUserInfo() {
@@ -29,9 +26,6 @@ class Api {
         "Content-Type": "application/json",
       },
     }).then(this._processResponse);
-    // .catch((err) => {
-    //     console.log(err);
-    //   });
   }
 
   setServerUserInfo({ name, about }) {

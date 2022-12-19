@@ -10,6 +10,7 @@ const selectors = {
   popupImageWrapperSelector: "#popupImageWrapper",
   authorNameSelector: ".author__name",
   authorDescriptionSelector: ".author__description",
+  authorImageSelector: ".author__image",
   editAuthorImageSelector: "#authorImage",
   confirmCardClosePopupSelector: "#confirmCardClosePopup",
 };
@@ -41,14 +42,15 @@ const initialCards = [
   },
 ];
 
-const inputNameElement = document.querySelector(".popup__name");
-const inputDescriptionElement = document.querySelector(".popup__description");
+const inputNameElement = document.querySelector("#popup__name");
+const inputDescriptionElement = document.querySelector("#popup__description");
 
 const addNewCardButtonElement = document.querySelector(".author__plus-sign");
 const newCardPopupElement = document.querySelector("#newCardPopup");
 const newCardFormElement = document.querySelector("#newCardForm");
 const cardListElement = document.querySelector(".cards__list");
 const authorImagePopupElement = document.querySelector("#authorImage");
+const authorImageElement = document.querySelector(".author__image");
 const authorImagepencilButtonElement = document.querySelector(
   ".author__image-overlay"
 );
@@ -85,6 +87,7 @@ export {
   cardListElement,
   pencilButtonElement,
   authorImagePopupElement,
+  authorImageElement,
   authorImagepencilButtonElement,
   authorImageFormElement,
   authorImageUrlElement,

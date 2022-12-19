@@ -17,6 +17,7 @@ class Card {
     this._textContent = data.name;
     this._cardId = data._id;
     this.userId = userId;
+    this.ownerId = data.owner._id;
     this._cardTemplateSelector = cardSelectors.cardTemplateSelector;
     this._cardElementSelector = cardSelectors.cardElementSelector;
     this._cardNameSelector = cardSelectors.cardNameSelector;
@@ -92,6 +93,15 @@ class Card {
     this._cardElement.querySelector(this._cardNameSelector).textContent =
       this._textContent;
     this._renderLikes();
+    this._renderTrashCan();
+  }
+
+  _renderTrashCan() {
+    if (this.userId !== this.ownerId) {
+      this._cardElement
+        .querySelector(this._cardTrashCanButtonSelector)
+        .classList.add("card__trashCanButton_hidden");
+    }
   }
 
   _handleLike() {
@@ -115,13 +125,11 @@ class Card {
     this._cardElement
       .querySelector(this._cardTrashCanButtonSelector)
       .addEventListener("click", () => {
-        // this._openPopupConfirmDeleteCard(this);
         this.handleDeleteCard(this);
       });
     this._cardElement
       .querySelector(this._cardImageSelector)
       .addEventListener("click", () => {
-        // this._openPopup(this._src, this._alt);
         this.handleCardImageClick(this._src, this._alt);
       });
   }

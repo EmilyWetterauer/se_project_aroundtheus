@@ -48,6 +48,7 @@
 .author__image {
   border-radius: 50%;
   height: 120.5px;
+  width: 120px;
 }
 
 .author__image-overlay {

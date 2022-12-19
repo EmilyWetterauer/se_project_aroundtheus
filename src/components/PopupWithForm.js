@@ -1,9 +1,8 @@
 import PopupWithConfirmation from "./PopupWithConfirmation.js";
 
 class PopupWithForm extends PopupWithConfirmation {
-  constructor(popupSelector, popupWithFormSubmit) {
-    super(popupSelector);
-    this.popupWithFormSubmit = popupWithFormSubmit.bind(this);
+  constructor(popupSelector, loadingButtonText) {
+    super(popupSelector, loadingButtonText);
   }
 
   getInputValues() {
@@ -17,15 +16,9 @@ class PopupWithForm extends PopupWithConfirmation {
     return inputObject;
   }
 
-  setEventListeners() {
-    super.setEventListeners();
-    this.popupElement.addEventListener("submit", this.popupWithFormSubmit);
-  }
-
   close() {
     super.close();
     this.popupElement.querySelector("form").reset();
-    this.popupElement.removeEventListener("submit", this.popupWithFormSubmit);
   }
 }
 
