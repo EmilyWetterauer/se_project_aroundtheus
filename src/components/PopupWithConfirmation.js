@@ -1,32 +1,17 @@
-import Popup from "./Popup.js";
+import PopupWithSubmit from "./PopupWithSubmit";
 
-class PopupWithConfirmation extends Popup {
+class PopupWithConfirmation extends PopupWithSubmit {
   constructor(popupSelector, loadingButtonText) {
-    super(popupSelector);
-    this._submitButton = this.popupElement.querySelector(".popup__saveButton");
-    this._buttonText = this._submitButton.textContent;
-    this._loadingButtonText = loadingButtonText;
-  }
-
-  showLoading() {
-    this._submitButton.textContent = this._loadingButtonText;
-  }
-
-  hideLoading() {
-    this._submitButton.textContent = this._buttonText;
-  }
-
-  open(action) {
-    this._handleFormSubmit = action;
-    super.open();
-  }
-
-  setEventListeners() {
+    super(popupSelector, loadingButtonText);
     this.popupElement.addEventListener("submit", (evt) => {
       evt.preventDefault();
       this._handleFormSubmit();
     });
-    super.setEventListeners();
+  }
+
+  open(action) {
+    super.open();
+    this._handleFormSubmit = action;
   }
 }
 

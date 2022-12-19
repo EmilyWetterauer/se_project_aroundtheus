@@ -63,7 +63,30 @@ const editAuthorImageFormValidator = new FormValidator(
 );
 const profileFormInstance = new PopupWithForm(
   selectors.profilePopupSelector,
-  "Saving..."
+  "Saving...",
+  (inputValues) => {
+    const nameAbout = inputValues;
+    profileFormInstance.showLoading();
+    api
+      .setServerUserInfo({
+        name: nameAbout.name,
+        about: nameAbout.description,
+      })
+      .then((userData) => {
+        userInfo.setUserInfo({
+          name: userData.name,
+          description: userData.about,
+        });
+        editProfileFormValidator.resetValidation();
+        profileFormInstance.close(profilePopupElement);
+      })
+      .catch((err) => {
+        console.log("err", err);
+      })
+      .finally(() => {
+        profileFormInstance.hideLoading();
+      });
+  }
 );
 
 const confirmDeleteCardInstance = new PopupWithConfirmation(
@@ -73,28 +96,12 @@ const confirmDeleteCardInstance = new PopupWithConfirmation(
 
 const newCardFormInstance = new PopupWithForm(
   selectors.newCardPopupSelector,
-  "Creating..."
-);
-
-const editAuthorImageInstance = new PopupWithForm(
-  selectors.editAuthorImageSelector,
-  "Saving..."
-);
-
-authorImagepencilButtonElement.addEventListener("click", function () {
-  openAuthorImagePopup(editAuthorImageFormValidator);
-});
-
-pencilButtonElement.addEventListener("click", function () {
-  openProfilePopup(editProfileFormValidator);
-});
-addNewCardButtonElement.addEventListener("click", function () {
-  newCardFormInstance.open(() => {
-    debugger;
+  "Creating...",
+  (inputValues) => {
+    newCardFormInstance.showLoading();
     api
-      .addCard(newCardFormInstance.getInputValues())
+      .addCard(inputValues)
       .then((data) => {
-        newCardFormInstance.showLoading();
         const cardElement = createCard(data);
 
         cardList.addItem(cardElement);
@@ -109,7 +116,41 @@ addNewCardButtonElement.addEventListener("click", function () {
       .finally(() => {
         newCardFormInstance.hideLoading();
       });
-  });
+  }
+);
+
+const editAuthorImageInstance = new PopupWithForm(
+  selectors.editAuthorImageSelector,
+  "Saving...",
+  (inputValues) => {
+    const authorImage = inputValues;
+    editAuthorImageInstance.showLoading();
+    api
+      .addAuthorImage({
+        avatar: authorImage.authorImageLink,
+      })
+      .then((res) => {
+        authorImageElement.src = res.avatar;
+        editAuthorImageInstance.close();
+      })
+      .catch((err) => {
+        console.log("err", err);
+      })
+      .finally(() => {
+        editAuthorImageInstance.hideLoading();
+      });
+  }
+);
+
+authorImagepencilButtonElement.addEventListener("click", function () {
+  openAuthorImagePopup(editAuthorImageFormValidator);
+});
+
+pencilButtonElement.addEventListener("click", function () {
+  openProfilePopup(editProfileFormValidator);
+});
+addNewCardButtonElement.addEventListener("click", function () {
+  newCardFormInstance.open();
 });
 
 const userInfo = new UserInfo(
@@ -135,26 +176,7 @@ Promise.all([api.getUserInfo(), api.getCardList()])
 
 function openAuthorImagePopup(editAuthorImageFormValidator) {
   editAuthorImageFormValidator.resetValidation();
-  editAuthorImageInstance.open(() => {
-    const authorImage = editAuthorImageInstance.getInputValues();
-    debugger;
-    api
-      .addAuthorImage({
-        avatar: authorImage.authorImageLink,
-      })
-      .then((res) => {
-        debugger;
-        editAuthorImageInstance.showLoading();
-        authorImageElement.src = res.avatar;
-        editAuthorImageInstance.close();
-      })
-      .catch((err) => {
-        console.log("err", err);
-      })
-      .finally(() => {
-        editAuthorImageInstance.hideLoading();
-      });
-  });
+  editAuthorImageInstance.open();
 }
 
 function openProfilePopup(editProfileFormValidator) {
@@ -162,29 +184,7 @@ function openProfilePopup(editProfileFormValidator) {
   inputNameElement.value = userInformation.userName;
   inputDescriptionElement.value = userInformation.userDescription;
   editProfileFormValidator.resetValidation();
-  profileFormInstance.open(() => {
-    const nameAbout = profileFormInstance.getInputValues();
-    api
-      .setServerUserInfo({
-        name: nameAbout.name,
-        about: nameAbout.description,
-      })
-      .then((userData) => {
-        profileFormInstance.showLoading();
-        userInfo.setUserInfo({
-          name: userData.name,
-          description: userData.about,
-        });
-        editProfileFormValidator.resetValidation();
-        profileFormInstance.close(profilePopupElement);
-      })
-      .catch((err) => {
-        console.log("err", err);
-      })
-      .finally(() => {
-        profileFormInstance.hideLoading();
-      });
-  });
+  profileFormInstance.open();
 }
 
 function handleCardImageClick(cardImageSource, cardAltSource) {
@@ -193,10 +193,10 @@ function handleCardImageClick(cardImageSource, cardAltSource) {
 
 function handleDeleteCard(card) {
   confirmDeleteCardInstance.open(() => {
+    confirmDeleteCardInstance.showLoading();
     api
-      .removeCard(card._cardId)
-      .then((data) => {
-        confirmDeleteCardInstance.showLoading();
+      .removeCard(card.getId())
+      .then(() => {
         card.deleteCard();
 
         confirmDeleteCardInstance.close();
@@ -211,15 +211,25 @@ function handleDeleteCard(card) {
 }
 
 function addLikes(card) {
-  api.addLikes(card._cardId).then((res) => {
-    card.setLikes(res.likes);
-  });
+  api
+    .addLikes(card.getId())
+    .then((res) => {
+      card.setLikes(res.likes);
+    })
+    .catch((err) => {
+      console.log("err", err);
+    });
 }
 
 function removeLikes(card) {
-  api.removeLikes(card._cardId).then((res) => {
-    card.setLikes(res.likes);
-  });
+  api
+    .removeLikes(card.getId())
+    .then((res) => {
+      card.setLikes(res.likes);
+    })
+    .catch((err) => {
+      console.log("err", err);
+    });
 }
 
 function createCard(newCardObject) {

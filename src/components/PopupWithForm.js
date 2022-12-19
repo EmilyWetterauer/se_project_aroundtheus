@@ -1,11 +1,16 @@
-import PopupWithConfirmation from "./PopupWithConfirmation.js";
+import PopupWithSubmit from "./PopupWithSubmit.js";
 
-class PopupWithForm extends PopupWithConfirmation {
-  constructor(popupSelector, loadingButtonText) {
+class PopupWithForm extends PopupWithSubmit {
+  constructor(popupSelector, loadingButtonText, action) {
     super(popupSelector, loadingButtonText);
+    this._handleFormSubmit = action;
+    this.popupElement.addEventListener("submit", (evt) => {
+      evt.preventDefault();
+      this._handleFormSubmit(this._getInputValues());
+    });
   }
 
-  getInputValues() {
+  _getInputValues() {
     const inputFields =
       this.popupElement.querySelectorAll(".popup__form-input");
 
